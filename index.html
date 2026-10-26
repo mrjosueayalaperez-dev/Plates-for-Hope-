@@ -2610,6 +2610,22 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
       }).then(function (res) { return res.status === 201; }).catch(function () { return false; });
     } catch (err) { return Promise.resolve(false); }
   }
+  /* Post a record that carries fields the central table may not have
+     columns for yet. If the full payload is rejected, resend with only
+     the long-standing base fields so the submission itself is never
+     lost; the extra fields stay on the session record and in the
+     visitor's confirmation either way, and start landing centrally as
+     soon as the table gains the columns. */
+  function sbPostFull(table, payload, extraKeys) {
+    return sbPost(table, payload).then(function (ok) {
+      if (ok) return true;
+      var base = {};
+      Object.keys(payload).forEach(function (k) {
+        if (extraKeys.indexOf(k) < 0) base[k] = payload[k];
+      });
+      return sbPost(table, base);
+    });
+  }
   /* ---------- Submission state flow: idle → sending → received / failed ----------
      A submission counts as received ONLY when the central store answers
      HTTP 201. Until then it never enters the session records or rollups.
@@ -2972,12 +2988,18 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
       [T("cDayL"), T(DAY_KEY[rec.day])], [T("cNotesL"), rec.notes]
     ];
     if (trnRec) rows.push([T("cRide"), T("yesW") + " (" + trnRec.ref + ")"]);
+    /* Central payload: every field the visitor submitted travels with the
+       record — including contact and preferred location, which coordinators
+       need to confirm the request and plan around it. (Earlier builds
+       dropped those two fields here, so they never reached the central
+       records even though the form collected them.) */
     var mealPayload = {
-      code: rec.ref, name: rec.name, anonymous: anon, household: rec.household, meals: rec.meals,
+      code: rec.ref, name: rec.name, anonymous: anon, contact: rec.contact, location: rec.location,
+      household: rec.household, meals: rec.meals,
       dietary: rec.diet.join(", "), menu: rec.menu.join(", "), preferred_day: rec.day, notes: rec.notes
     };
     var stages = [function () {
-      return sbPost("meal_requests", mealPayload).then(function (ok) {
+      return sbPostFull("meal_requests", mealPayload, ["contact", "location"]).then(function (ok) {
         if (ok) { store.requests.push(rec); notify("nkReq", "nRequest", { ref: rec.ref, n: rec.meals }); }
         return ok;
       });
@@ -2985,7 +3007,13 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
     if (trnRec) {
       var trnPayload = {
         code: trnRec.ref, meal_request_code: rec.ref, pickup: ride.pickup, dropoff: rec.location,
-        notes: [ride.access, ride.riders ? ("Riders: " + ride.riders) : ""].filter(Boolean).join(" — ")
+        /* transport_requests has no name/contact columns, so both ride
+           with the record in notes — otherwise coordinators could not
+           reach the rider. */
+        notes: [ride.access,
+          trnRec.name ? ("Name: " + trnRec.name) : "",
+          trnRec.contact ? ("Contact: " + trnRec.contact) : "",
+          ride.riders ? ("Riders: " + ride.riders) : ""].filter(Boolean).join(" — ")
       };
       stages.push(function () {
         return sbPost("transport_requests", trnPayload).then(function (ok) {
@@ -3042,11 +3070,12 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
     ];
     var payload = {
       code: rec.ref, name: rec.name, contact: rec.contact,
-      availability: rec.avail.join(", "), roles: rec.roles.join(", ")
+      availability: rec.avail.join(", "), roles: rec.roles.join(", "),
+      notes: rec.help
     };
     var formEl = e.target;
     beginAttempt("vol", "volunteer-confirm", formEl, [function () {
-      return sbPost("volunteers", payload).then(function (ok) {
+      return sbPostFull("volunteers", payload, ["notes"]).then(function (ok) {
         if (ok) { store.volunteers.push(rec); notify("nkVol", "nVolunteer", { ref: rec.ref, name: name }); }
         return ok;
       });
@@ -3187,7 +3216,10 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
     ];
     var payload = {
       code: rec.ref, meal_request_code: rec.mealRef || "", pickup: rec.area, dropoff: "",
-      notes: [rec.notes, rec.riders ? ("Riders: " + rec.riders) : "", rec.day ? ("Day: " + rec.day) : ""].filter(Boolean).join(" — ")
+      /* transport_requests has no name/contact columns; both ride in
+         notes so coordinators can reach the person asking for a ride. */
+      notes: [rec.name ? ("Name: " + rec.name) : "", "Contact: " + contact, rec.notes,
+        rec.riders ? ("Riders: " + rec.riders) : "", rec.day ? ("Day: " + rec.day) : ""].filter(Boolean).join(" — ")
     };
     var formEl = e.target;
     beginAttempt("tf", "tf-confirm", formEl, [function () {
