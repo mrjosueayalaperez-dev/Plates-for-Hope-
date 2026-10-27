@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import "tailwindcss-safe-area";
+
+@theme {
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 18px;
+  --text-lg--line-height: 28px;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-2xl: 24px;
+  --text-2xl--line-height: 32px;
+  --text-3xl: 30px;
+  --text-3xl--line-height: 36px;
+  --text-4xl: 36px;
+  --text-4xl--line-height: 40px;
+  --text-5xl: 48px;
+  --text-5xl--line-height: 52px;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+}
+
+:root {
+  color-scheme: light dark;
+  --bg: #fdfbf7;
+  --surface: #ffffff;
+  --surface-alt: #f3ede3;
+  --text: #2b211c;
+  --dim: #6f5d52;
+  --border: #e3d9c9;
+  --accent: #b33a1f;
+  --accent-soft: #fbeae4;
+  --green: #2f5d3a;
+  --green-soft: #e6efe4;
+  --amber: #b45309;
+  --amber-soft: #fdf0dc;
+  --radius: 10px;
+  --space-surface: var(--surface);
+  --space-surface-alt: var(--surface-alt);
+  --space-muted: var(--dim);
+  --space-border: var(--border);
+  --space-accent: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171210;
+    --surface: #221b17;
+    --surface-alt: #2c231d;
+    --text: #f3ece4;
+    --dim: #b8a696;
+    --border: #3d322a;
+    --accent: #e8704f;
+    --accent-soft: #3a231c;
+    --green: #8fc79b;
+    --green-soft: #22301f;
+    --amber: #e8b04b;
+    --amber-soft: #38300f;
+  }
+}

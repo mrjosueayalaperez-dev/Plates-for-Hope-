@@ -1,0 +1,1 @@
+ALTER TABLE `plans` ADD COLUMN `currency` text DEFAULT 'USD' NOT NULL;
