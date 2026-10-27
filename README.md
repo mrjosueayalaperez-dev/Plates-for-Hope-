@@ -49,7 +49,7 @@ Until that integration is implemented and tested, the app and this package keep 
 
 - Demo evidence page: https://muse.ai/s/plates-for-hope-ai-meal-coordinator-xaxd67qx0xkxwhxbxa/qMKVl3Ms8u_PMLg2ajZVNYJp6um9xfawI1JOn2v4O_Y
 
-Verified live results (Oct 27, 2026) include Demo 1 "Tight budget" (chicken 8 lb + rice 10 lb on hand, $60, 40 people → menu + split grocery list totaling **$45.65, UNDER by $14.35**) and a vegetarian + gluten-free run (→ Lentil & Vegetable Soup, **$41.25 of a $90 budget**). Full figures: `TEST-EVIDENCE.md`.
+Verified live results (Oct 27, 2026) include Demo 1 "Tight budget" (chicken 8 lb + rice 10 lb on hand, $60, 40 people → menu + split grocery list with estimated additional purchases of **$45.65, UNDER budget by $14.35**) and a vegetarian + gluten-free run with nothing on hand (→ Lentil & Vegetable Soup, **$41.25 of a $90 budget**). Full figures: `TEST-EVIDENCE.md`.
 
 ## Setup / access for reviewers
 
