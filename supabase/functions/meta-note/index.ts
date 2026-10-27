@@ -33,9 +33,25 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
   if (req.method !== "POST") return json({ enabled: false, error: "method" }, 405);
 
-  const anon = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
+  // Gate: the caller must present this project's anon key. The Supabase
+  // gateway has already verified the JWT's signature before invoking us
+  // (requests without an authorization header are rejected at the gateway),
+  // so here we verify the key's claims — project ref + anon role — rather
+  // than comparing against a runtime env value. (Found in testing Oct 27:
+  // the editor-deployed runtime's SUPABASE_ANON_KEY did not byte-match the
+  // project's public anon JWT, which falsely rejected the real site.)
   const apikey = req.headers.get("apikey") ?? "";
-  if (!anon || apikey !== anon) return json({ enabled: false, error: "unauthorized" }, 401);
+  let claims: any = null;
+  try {
+    const parts = apikey.split(".");
+    if (parts.length === 3) {
+      const b64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+      claims = JSON.parse(atob(b64.padEnd(Math.ceil(b64.length / 4) * 4, "=")));
+    }
+  } catch { claims = null; }
+  if (!claims || claims.ref !== "mbuzfqiqmrgpvotcdiml" || claims.role !== "anon") {
+    return json({ enabled: false, error: "unauthorized" }, 401);
+  }
 
   const key = Deno.env.get("META_MODEL_API_KEY") ?? "";
   const base = (Deno.env.get("META_MODEL_API_BASE_URL") ?? "").replace(/\/+$/, "");
