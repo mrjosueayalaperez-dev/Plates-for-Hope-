@@ -2490,6 +2490,7 @@ function renderPlan(scroll) {
   var sec = $("plan-section");
   if (!plan) { sec.hidden = true; return; }
   sec.hidden = false;
+  try { if (window.__pfhMetaNote) window.__pfhMetaNote(plan, lang); } catch (e) {}
   var tt = t();
   $("plan-title").textContent = lang === "en" ? plan.titleEn : plan.titleEs;
   var eqLabel = "";
@@ -2831,6 +2832,48 @@ $("prep-toggle").addEventListener("click", function () {
 });
 setLang("en");
 
+})();
+</script>
+<script>
+/* Meta AI organizer note — prepared Oct 27, 2026. Fail-closed: until the founder configures the Meta secrets in Supabase, the endpoint answers enabled:false and this adds nothing to the page. The status strip keeps reading "Meta AI is NOT connected" until the connection is verified end to end (META-INTEGRATION.md). */
+(function () {
+  var FN = "https://mbuzfqiqmrgpvotcdiml.supabase.co/functions/v1/meta-note";
+  var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1idXpmcWlxbXJncHZvdGNkaW1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI4NjYwNTIsImV4cCI6MjEwODQ0MjA1Mn0.Z3tslQ-7iCLZXqVOXgDJtO6tBHRSNiiLZbQ2nJyxis8";
+  var lastSig = "";
+  window.__pfhMetaNote = function (plan, lang) {
+    try {
+      if (!plan) return;
+      var dishes = [];
+      (plan.dishes || []).forEach(function (d) { dishes.push(lang === "es" ? d.nameEs : d.nameEn); });
+      var sig = [plan.titleEn, plan.totalCents, plan.headcount, lang].join("|");
+      if (sig === lastSig && document.getElementById("meta-note-card")) return;
+      lastSig = sig;
+      fetch(FN, { method: "POST", headers: { "Content-Type": "application/json", "apikey": KEY, "Authorization": "Bearer " + KEY },
+        body: JSON.stringify({ lang: lang === "es" ? "es" : "en", title: lang === "es" ? plan.titleEs : plan.titleEn, headcount: plan.headcount, currency: plan.currency || "USD", totalCents: plan.totalCents, budgetCents: plan.budgetCents, verdict: plan.verdict, dishes: dishes }) })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var sec = document.querySelector("#pfh-coord #plan-section");
+        if (!sec) return;
+        var old = document.getElementById("meta-note-card");
+        if (old) old.remove();
+        if (!data || data.enabled !== true || !data.note) return;
+        var card = document.createElement("div");
+        card.id = "meta-note-card";
+        card.style.cssText = "margin-top:14px;padding:12px 14px;border:1px solid #decdb2;border-radius:12px;background:#f7e3d3;";
+        var label = document.createElement("strong");
+        label.textContent = lang === "es" ? "Nota para el organizador \u2014 redactada con Meta AI" : "Organizer note \u2014 drafted with Meta AI";
+        var body = document.createElement("p");
+        body.style.margin = "6px 0 0";
+        body.textContent = String(data.note);
+        var fine = document.createElement("p");
+        fine.style.cssText = "margin:6px 0 0;font-size:12px;opacity:.75";
+        fine.textContent = lang === "es" ? "Las cantidades y los costos de arriba los calcula el motor de planificaci\u00f3n." : "Quantities and costs above are computed by the planning engine.";
+        card.appendChild(label); card.appendChild(body); card.appendChild(fine);
+        sec.appendChild(card);
+      })
+      .catch(function () { /* fail closed: no note, no error */ });
+    } catch (e) {}
+  };
 })();
 </script>
 <section id="volunteer" class="alt">
