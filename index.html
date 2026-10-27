@@ -607,6 +607,152 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } .panel { padding: 20px 16px; } }
 
+
+/* === Meal Coordinator (integrated Oct 27, 2026) — styles scoped to #pfh-coord === */
+#pfh-coord {
+        --bg: #faf3e6;
+        --surface: #fffdf6;
+        --surface-alt: #f3ead8;
+        --text: #392a1b;
+        --dim: #75604a;
+        --border: #decdb2;
+        --accent: #9a4416;
+        --accent-soft: #f7e3d3;
+        --green: #5f7028;
+        --green-soft: #e9eedc;
+        --amber: #9c6a00;
+        --amber-soft: #f7ecd2;
+        --radius: 14px;
+      }
+@media (prefers-color-scheme: dark) {
+#pfh-coord {
+          --bg: #1f1810;
+          --surface: #2a2115;
+          --surface-alt: #241c11;
+          --text: #f2e8d5;
+          --dim: #c4b096;
+          --border: #4a3b26;
+          --accent: #e08a4c;
+          --accent-soft: #3e2a18;
+          --green: #a9bc6b;
+          --green-soft: #2e3319;
+          --amber: #e3b34e;
+          --amber-soft: #3a2e12;
+        }
+
+      }
+#pfh-coord, #pfh-coord * { box-sizing: border-box; }
+#pfh-coord {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.45;
+      }
+#pfh-coord h1, #pfh-coord h2, #pfh-coord h3, #pfh-coord .serif { font-family: Georgia, "Times New Roman", serif; }
+#pfh-coord main { margin: 0 auto; width: 100%; max-width: 48rem; padding: 0 1rem 2.5rem; }
+#pfh-coord button { font: inherit; cursor: pointer; }
+#pfh-coord input, #pfh-coord select { font: inherit; color: var(--text); }
+#pfh-coord .langbar { display: flex; align-items: center; justify-content: flex-end; gap: 0.5rem; padding-top: 1rem; }
+#pfh-coord .langbtn { min-height: 44px; border-radius: 999px; padding: 0 1rem; font-size: 0.875rem; font-weight: 600; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+#pfh-coord .langbtn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+#pfh-coord h1 { margin: 0.5rem 0 0; font-size: 1.875rem; line-height: 1.2; font-weight: 700; }
+#pfh-coord .intro { margin-top: 0.5rem; color: var(--dim); }
+#pfh-coord .facts { margin-top: 0.5rem; font-size: 0.875rem; color: var(--dim); }
+#pfh-coord .status-strip { margin-top: 1rem; border: 1px solid var(--green); background: var(--green-soft); border-radius: var(--radius); padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem; }
+#pfh-coord .status-strip p { margin: 0; }
+#pfh-coord .status-strip .meta-line { font-weight: 700; }
+#pfh-coord .section-label { font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dim); margin: 0; }
+#pfh-coord .demo-row { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+@media (min-width: 640px) {
+#pfh-coord .demo-row { flex-direction: row; flex-wrap: wrap; }
+ }
+#pfh-coord .demo-btn { min-height: 44px; border-radius: var(--radius); border: 1px solid var(--accent); background: var(--accent-soft); padding: 0.5rem 1rem; text-align: left; font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+#pfh-coord .card { margin-top: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); padding: 1rem; }
+#pfh-coord fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+#pfh-coord legend { font-size: 1rem; font-weight: 600; padding: 0; }
+#pfh-coord .hint { margin-top: 0.25rem; font-size: 0.875rem; color: var(--dim); }
+#pfh-coord .oh-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+#pfh-coord .field { min-height: 44px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg); padding: 0 0.75rem; font-size: 1rem; width: 100%; }
+#pfh-coord .oh-name { flex: 1; min-width: 0; }
+#pfh-coord .oh-qty { width: 6rem; flex: none; }
+#pfh-coord .oh-remove { min-height: 44px; width: 2.75rem; flex: none; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; font-size: 1.125rem; color: var(--dim); }
+#pfh-coord .add-btn { margin-top: 0.5rem; min-height: 44px; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; padding: 0 1rem; font-size: 0.875rem; font-weight: 600; color: var(--text); }
+#pfh-coord .grid3 { margin-top: 1.25rem; display: grid; gap: 1rem; }
+@media (min-width: 640px) {
+#pfh-coord .grid3 { grid-template-columns: repeat(3, 1fr); }
+ }
+#pfh-coord label.flabel { font-size: 1rem; font-weight: 600; display: block; }
+#pfh-coord .grid3 .field, #pfh-coord fieldset .field { margin-top: 0.25rem; }
+#pfh-coord .chips { margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+#pfh-coord .chip { min-height: 44px; border-radius: 999px; padding: 0 1rem; font-size: 0.875rem; font-weight: 600; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+#pfh-coord .chip.on-green { background: var(--green); color: #fff; border-color: var(--green); }
+#pfh-coord .chip-amber { border-color: var(--amber); }
+#pfh-coord .chip.on-amber { background: var(--amber); color: #fff; }
+#pfh-coord .equip-row { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+@media (min-width: 640px) {
+#pfh-coord .equip-row { flex-direction: row; }
+ }
+#pfh-coord .equip-btn { min-height: 44px; flex: 1; border-radius: var(--radius); padding: 0.5rem 0.75rem; font-size: 0.875rem; font-weight: 600; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+#pfh-coord .equip-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+#pfh-coord .errors { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.25rem; border-radius: var(--radius); background: var(--amber-soft); padding: 0.5rem 0.75rem; font-size: 0.875rem; font-weight: 600; color: var(--amber); }
+#pfh-coord .errors p { margin: 0; }
+#pfh-coord .generate-btn { margin-top: 1.25rem; min-height: 52px; width: 100%; border: 0; border-radius: var(--radius); background: var(--accent); color: #fff; font-size: 1.125rem; font-weight: 700; }
+#pfh-coord .engine-note { margin-top: 0.75rem; font-size: 0.75rem; color: var(--dim); }
+#pfh-coord .failure { margin-top: 2rem; border-radius: var(--radius); border: 1px solid var(--accent); background: var(--accent-soft); padding: 1rem; }
+#pfh-coord .failure h2 { margin: 0; font-size: 1.5rem; }
+#pfh-coord .failure ul { margin: 0.25rem 0 0; padding-left: 1.25rem; }
+#pfh-coord .verdict-box { margin-top: 0.75rem; border-radius: var(--radius); border: 1px solid var(--green); background: var(--green-soft); padding: 0.75rem 1rem; }
+#pfh-coord .verdict-box.over { border-color: var(--accent); background: var(--accent-soft); }
+#pfh-coord .verdict-box p { margin: 0; }
+#pfh-coord .verdict-main { font-size: 1.125rem; font-weight: 700; }
+#pfh-coord .verdict-sub { margin-top: 0.25rem !important; font-size: 1rem; font-weight: 600; }
+#pfh-coord .verdict-fix { margin-top: 0.5rem !important; font-size: 0.875rem; }
+#pfh-coord .allergy-banner { margin-top: 0.75rem; border-radius: var(--radius); border: 1px solid var(--amber); background: var(--amber-soft); padding: 0.75rem 1rem; }
+#pfh-coord .allergy-banner p { margin: 0; }
+#pfh-coord .warn { margin-top: 0.5rem; border-radius: var(--radius); background: var(--amber-soft); padding: 0.5rem 0.75rem; font-size: 0.875rem; font-weight: 500; color: var(--amber); }
+#pfh-coord .warn p { margin: 0; }
+#pfh-coord .dish-card { border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); padding: 1rem; margin-top: 0.75rem; }
+#pfh-coord .dish-kind { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0; }
+#pfh-coord .dish-name { margin: 0.25rem 0 0; font-size: 1.125rem; font-weight: 600; }
+#pfh-coord .dish-serv { font-size: 0.875rem; color: var(--dim); margin: 0; }
+#pfh-coord .dish-cook { margin-top: 0.5rem; font-size: 0.875rem; }
+#pfh-coord .dish-ok { margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--green); }
+#pfh-coord .dish-bad { margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+#pfh-coord .grocery-list { margin-top: 0.5rem; list-style: none; padding: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+#pfh-coord .grocery-list li { padding: 0.75rem 1rem; }
+#pfh-coord .grocery-list li + li { border-top: 1px solid var(--border); }
+#pfh-coord .g-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
+#pfh-coord .g-name { font-weight: 600; }
+#pfh-coord .g-total { font-weight: 700; white-space: nowrap; }
+#pfh-coord .g-detail { margin-top: 0.125rem; font-size: 0.875rem; color: var(--dim); }
+#pfh-coord .g-covered { font-size: 0.875rem; font-weight: 600; color: var(--green); }
+#pfh-coord .check-item { display: flex; min-height: 44px; cursor: pointer; align-items: flex-start; gap: 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); padding: 0.5rem 0.75rem; }
+#pfh-coord .check-item input { margin-top: 0.25rem; width: 1.25rem; height: 1.25rem; flex: none; }
+#pfh-coord .check-item .done { color: var(--dim); text-decoration: line-through; }
+#pfh-coord .phase-head { margin: 0.75rem 0 0.25rem; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
+#pfh-coord .checklist { list-style: none; padding: 0; margin: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
+#pfh-coord .plan-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+#pfh-coord .plan-head h2 { margin: 0; font-size: 1.5rem; }
+#pfh-coord .copy-btn { min-height: 44px; flex: none; border-radius: var(--radius); border: 1px solid var(--accent); background: var(--accent-soft); padding: 0 1rem; font-size: 0.875rem; font-weight: 700; color: var(--accent); }
+#pfh-coord .saved-note { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.7rem; color: var(--dim); background: var(--surface); }
+#pfh-coord .saved-item { display: flex; align-items: center; gap: 0.5rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); padding: 0.5rem 0.75rem; margin-top: 0.5rem; }
+#pfh-coord .saved-item .meta { min-width: 0; flex: 1; }
+#pfh-coord .saved-item .meta p { margin: 0; }
+#pfh-coord .saved-title { font-size: 0.875rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#pfh-coord .saved-sub { font-size: 0.75rem; color: var(--dim); }
+#pfh-coord .small-btn { min-height: 44px; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; padding: 0 0.75rem; font-size: 0.875rem; font-weight: 600; color: var(--text); }
+#pfh-coord .small-btn.danger { color: var(--accent); }
+#pfh-coord .prep { margin-top: 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface-alt); padding: 1rem; }
+#pfh-coord .prep-toggle { display: flex; min-height: 44px; width: 100%; align-items: center; justify-content: space-between; text-align: left; font-family: Georgia, serif; font-size: 1.125rem; font-weight: 600; background: none; border: 0; color: var(--text); padding: 0; }
+#pfh-coord .prep-body { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; }
+#pfh-coord .prep-body p { margin: 0; }
+#pfh-coord .mt { margin-top: 1.25rem; }
+#pfh-coord .mt-lg { margin-top: 2rem; }
+#pfh-coord [hidden] { display: none !important; }
+
+    
 </style>
 </head>
 <body>
@@ -633,6 +779,7 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#request">Request a Meal</a></li>
           <li><a href="#planner">Meal Planner</a></li>
+          <li><a href="#meal-coordinator">Meal Coordinator</a></li>
           <li><a href="#volunteer">Volunteer</a></li>
           <li><a href="#donate">Donate</a></li>
           <li><a href="#partners">Partners</a></li>
@@ -990,7 +1137,1703 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
     </section>
 
     <!-- ============ VOLUNTEER ============ -->
-    <section id="volunteer" class="alt">
+    <section id="meal-coordinator">
+<div id="pfh-coord">
+
+    <main>
+      <div class="langbar" role="group" aria-label="Language / Idioma">
+        <button type="button" id="lang-en" class="langbtn">English</button>
+        <button type="button" id="lang-es" class="langbtn">Español</button>
+      </div>
+
+      <h1 data-i18n="planHeading"></h1>
+      <p class="intro" data-i18n="planIntro"></p>
+      <p class="facts" data-i18n="factsNote"></p>
+
+      <div class="status-strip" role="status">
+        <p data-i18n="deviceNote"></p>
+        <p class="meta-line" data-i18n="metaNotConnected"></p>
+        <p data-i18n="estimatesNote"></p>
+      </div>
+
+      <section class="mt" aria-label="Demos">
+        <h2 class="section-label" data-i18n="demoLabel"></h2>
+        <div class="demo-row" id="demo-row"></div>
+      </section>
+
+      <form class="card" id="coord-form" novalidate>
+        <fieldset>
+          <legend data-i18n="onHand"></legend>
+          <p class="hint" data-i18n="onHandHint"></p>
+          <div id="oh-rows"></div>
+          <button type="button" class="add-btn" id="oh-add"></button>
+        </fieldset>
+
+        <div class="grid3">
+          <div>
+            <label class="flabel" for="budget" data-i18n="budget"></label>
+            <input id="budget" class="field" inputmode="decimal" placeholder="85" />
+          </div>
+          <div>
+            <label class="flabel" for="currency" data-i18n="currency"></label>
+            <select id="currency" class="field"></select>
+          </div>
+          <div>
+            <label class="flabel" for="headcount" data-i18n="headcount"></label>
+            <input id="headcount" class="field" inputmode="numeric" placeholder="60" />
+          </div>
+        </div>
+        <p class="hint" data-i18n="currencyNote"></p>
+
+        <fieldset class="mt">
+          <legend data-i18n="dietary"></legend>
+          <div class="chips" id="restriction-chips"></div>
+          <label class="flabel mt" for="other-needs" style="font-size:0.875rem" data-i18n="otherNeeds"></label>
+          <input id="other-needs" class="field" />
+        </fieldset>
+
+        <fieldset class="mt">
+          <legend data-i18n="allergiesTitle"></legend>
+          <p class="hint" data-i18n="allergiesHint"></p>
+          <div class="chips" id="allergy-chips"></div>
+          <label class="flabel mt" for="other-allergies" style="font-size:0.875rem" data-i18n="otherAllergies"></label>
+          <input id="other-allergies" class="field" />
+        </fieldset>
+
+        <fieldset class="mt">
+          <legend data-i18n="equipmentTitle"></legend>
+          <div class="equip-row" id="equip-row"></div>
+          <label class="flabel mt" for="accommodation" style="font-size:0.875rem" data-i18n="accommodation"></label>
+          <input id="accommodation" class="field" inputmode="numeric" placeholder="0" style="max-width:10rem" />
+          <p class="hint" data-i18n="accommodationHint"></p>
+        </fieldset>
+
+        <div class="errors" id="form-errors" role="alert" hidden></div>
+
+        <button type="submit" class="generate-btn" id="generate-btn"></button>
+        <p class="engine-note" data-i18n="engineNote"></p>
+      </form>
+
+      <section class="failure" id="failure-section" role="alert" hidden>
+        <h2 data-i18n="failureTitle"></h2>
+        <p id="failure-title" style="font-weight:600;margin:0.25rem 0 0"></p>
+        <div id="failure-reasons" style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem"></div>
+        <div id="failure-could-wrap">
+          <h3 class="serif" style="font-size:1.125rem;margin:1rem 0 0" data-i18n="couldDoTitle"></h3>
+          <ul id="failure-could"></ul>
+        </div>
+        <h3 class="serif" style="font-size:1.125rem;margin:1rem 0 0" data-i18n="couldNotTitle"></h3>
+        <ul id="failure-couldnot"></ul>
+        <p style="margin-top:0.75rem;font-size:0.875rem;font-weight:600" data-i18n="failureHint"></p>
+      </section>
+
+      <section class="mt-lg" id="plan-section" hidden>
+        <div class="plan-head">
+          <h2 id="plan-title"></h2>
+          <button type="button" class="copy-btn" id="copy-btn"></button>
+        </div>
+        <p class="hint" id="plan-equip-line" style="margin-top:0.25rem"></p>
+        <span class="saved-note" id="plan-saved-note" hidden></span>
+
+        <div class="verdict-box" id="verdict-box">
+          <p class="verdict-main" id="verdict-main"></p>
+          <p class="verdict-sub" id="verdict-sub"></p>
+          <p class="verdict-fix" id="verdict-fix" hidden></p>
+        </div>
+
+        <div class="allergy-banner" id="allergy-banner" role="alert" hidden>
+          <p style="font-size:1rem;font-weight:700;color:var(--amber)">⚠ <span data-i18n="allergyBannerTitle"></span></p>
+          <div id="allergy-flags" style="margin-top:0.25rem;display:flex;flex-direction:column;gap:0.25rem"></div>
+          <p id="allergy-note" style="margin-top:0.5rem;font-size:0.875rem;font-weight:600"></p>
+        </div>
+
+        <div id="plan-warnings"></div>
+
+        <h3 class="serif mt-lg" style="font-size:1.25rem;margin-bottom:0" data-i18n="menuTitle"></h3>
+        <div id="plan-dishes"></div>
+        <p id="plan-used" style="font-size:0.875rem;margin-top:0.75rem" hidden></p>
+        <p id="plan-unmatched" style="font-size:0.875rem;margin-top:0.25rem;color:var(--dim)" hidden></p>
+
+        <h3 class="serif mt-lg" style="font-size:1.25rem;margin-bottom:0" data-i18n="groceryTitle"></h3>
+        <p class="hint" data-i18n="groceryNote"></p>
+        <div id="have-wrap" hidden>
+          <h4 style="margin:1rem 0 0;font-size:1rem;color:var(--green)" data-i18n="haveTitle"></h4>
+          <ul class="grocery-list" id="have-list"></ul>
+        </div>
+        <h4 style="margin:1rem 0 0;font-size:1rem" data-i18n="buyTitle"></h4>
+        <p id="buy-empty" style="margin-top:0.5rem;font-size:0.875rem;font-weight:600;color:var(--green)" hidden></p>
+        <ul class="grocery-list" id="buy-list"></ul>
+
+        <h3 class="serif mt-lg" style="font-size:1.25rem;margin-bottom:0" data-i18n="checklistTitle"></h3>
+        <ol class="checklist" id="checklist"></ol>
+      </section>
+
+      <section class="mt-lg" aria-label="Saved plans">
+        <h2 class="serif" style="font-size:1.25rem;margin:0" data-i18n="savedTitle"></h2>
+        <p class="hint" data-i18n="savedDeviceOnly"></p>
+        <p id="no-saved" class="hint" data-i18n="noSaved"></p>
+        <div id="saved-list"></div>
+      </section>
+
+      <section class="prep" aria-label="Status">
+        <button type="button" class="prep-toggle" id="prep-toggle" aria-expanded="false">
+          <span data-i18n="prepTitle"></span><span aria-hidden="true" id="prep-sign">+</span>
+        </button>
+        <div class="prep-body" id="prep-body" hidden>
+          <p style="font-weight:600" data-i18n="prepAiTitle"></p>
+          <p data-i18n="prepAiRunning"></p>
+          <p data-i18n="prepAiNot"></p>
+          <p data-i18n="prepSolo"></p>
+          <p data-i18n="prepTrack"></p>
+          <p style="font-weight:600" data-i18n="prepCreditsTitle"></p>
+          <p data-i18n="prepCredits1"></p>
+          <p data-i18n="prepCredits2"></p>
+          <p data-i18n="prepCredits3"></p>
+          <p data-i18n="prepCredits4"></p>
+          <p style="font-weight:600" data-i18n="prepDeadline"></p>
+        </div>
+      </section>
+    </main>
+
+</div>
+</section>
+<script>
+/* Meal Coordinator — integrated Oct 27, 2026 (founder ruling: the working Coordinator lives inside Plates for Hope). Engine identical to the verified working-app build; DOM queries scoped to #pfh-coord; saved plans stay on the visitor’s device. */
+(function(){
+"use strict";
+
+"use strict";
+/* =====================================================================
+   Plates for Hope AI Meal Coordinator — working app.
+   The planning engine below is a faithful on-device port of the
+   Coordinator's server engine (server/src/actions.ts): same catalog,
+   same dish library, same prices, same arithmetic, same bilingual
+   strings in substance. Everything computes in this browser.
+   ===================================================================== */
+
+// ---------------------------------------------------------------------------
+// Currencies. Estimates are written directly in the chosen currency — the
+// engine NEVER converts between currencies.
+// ---------------------------------------------------------------------------
+var CURRENCY_CODES = ["USD", "EUR", "GBP", "MXN", "CAD"];
+var CURRENCY_SYMBOLS = { USD: "$", EUR: "€", GBP: "£", MXN: "MX$", CAD: "CA$" };
+var CURRENCIES = [
+  { code: "USD", en: "US dollar (USD)", es: "Dólar estadounidense (USD)" },
+  { code: "EUR", en: "Euro (EUR)", es: "Euro (EUR)" },
+  { code: "GBP", en: "British pound (GBP)", es: "Libra esterlina (GBP)" },
+  { code: "MXN", en: "Mexican peso (MXN)", es: "Peso mexicano (MXN)" },
+  { code: "CAD", en: "Canadian dollar (CAD)", es: "Dólar canadiense (CAD)" }
+];
+function symbolFor(code) {
+  for (var i = 0; i < CURRENCIES.length; i++) if (CURRENCIES[i].code === code) return CURRENCY_SYMBOLS[code];
+  return "$";
+}
+
+// ---------------------------------------------------------------------------
+// Ingredient catalog. Costs are planning ESTIMATES in cents per unit.
+// ---------------------------------------------------------------------------
+var CATALOG = [
+  { id: "chicken", en: "Chicken thighs", es: "Muslos de pollo", aliases: ["chicken", "pollo", "chicken breast", "pechuga"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 149, tags: { meat: true, animal: true } },
+  { id: "turkey", en: "Ground turkey", es: "Pavo molido", aliases: ["turkey", "pavo", "ground turkey"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 279, tags: { meat: true, animal: true } },
+  { id: "beef", en: "Ground beef", es: "Carne molida de res", aliases: ["beef", "res", "ground beef", "carne molida"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 429, tags: { meat: true, animal: true } },
+  { id: "pork", en: "Pork shoulder", es: "Paleta de cerdo", aliases: ["pork", "cerdo", "pork shoulder"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 139, tags: { meat: true, pork: true, animal: true } },
+  { id: "tofu", en: "Tofu", es: "Tofu", aliases: ["tofu"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 190, tags: { soy: true } },
+  { id: "eggs", en: "Eggs", es: "Huevos", aliases: ["egg", "eggs", "huevo", "huevos"], unit: "dozen", unitEn: "dozen", unitEs: "docena", costCents: 320, tags: { egg: true, animal: true } },
+  { id: "lentils", en: "Dry lentils", es: "Lentejas secas", aliases: ["lentil", "lentils", "lentejas"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 110, tags: {} },
+  { id: "dryBeans", en: "Dry beans", es: "Frijoles secos", aliases: ["dry beans", "beans", "frijoles secos", "frijoles"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 120, tags: {} },
+  { id: "cannedBeans", en: "Canned beans", es: "Frijoles enlatados", aliases: ["canned beans", "frijoles enlatados"], unit: "can", unitEn: "cans", unitEs: "latas", costCents: 110, tags: {} },
+  { id: "cannedTomatoes", en: "Canned tomatoes", es: "Tomates enlatados", aliases: ["canned tomatoes", "tomatoes", "tomates", "tomate"], unit: "can", unitEn: "cans", unitEs: "latas", costCents: 120, tags: {} },
+  { id: "rice", en: "Long-grain rice", es: "Arroz de grano largo", aliases: ["rice", "arroz"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 85, tags: {} },
+  { id: "pasta", en: "Pasta", es: "Pasta", aliases: ["pasta", "spaghetti", "macaroni", "fideos"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 115, tags: { gluten: true } },
+  { id: "rolls", en: "Dinner rolls", es: "Panecillos", aliases: ["rolls", "roll", "bread", "pan", "panecillos"], unit: "each", unitEn: "rolls", unitEs: "panecillos", costCents: 45, tags: { gluten: true } },
+  { id: "potatoes", en: "Potatoes", es: "Papas", aliases: ["potato", "potatoes", "papa", "papas"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 75, tags: {} },
+  { id: "carrots", en: "Carrots", es: "Zanahorias", aliases: ["carrot", "carrots", "zanahoria", "zanahorias"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 95, tags: {} },
+  { id: "onion", en: "Onions", es: "Cebollas", aliases: ["onion", "onions", "cebolla", "cebollas"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 90, tags: {} },
+  { id: "mixedVeg", en: "Frozen mixed vegetables", es: "Verduras mixtas congeladas", aliases: ["mixed vegetables", "vegetables", "veggies", "verduras", "vegetales"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 125, tags: {} },
+  { id: "corn", en: "Frozen corn", es: "Maíz congelado", aliases: ["corn", "maíz", "maiz", "elote"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 110, tags: {} },
+  { id: "greens", en: "Salad greens", es: "Hojas para ensalada", aliases: ["salad", "greens", "lettuce", "lechuga", "ensalada"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 320, tags: {} },
+  { id: "bananas", en: "Bananas", es: "Plátanos", aliases: ["banana", "bananas", "plátano", "plátanos", "platano"], unit: "each", unitEn: "bananas", unitEs: "plátanos", costCents: 65, tags: {} },
+  { id: "cheese", en: "Shredded cheese", es: "Queso rallado", aliases: ["cheese", "queso"], unit: "lb", unitEn: "lb", unitEs: "lb", costCents: 350, tags: { dairy: true, animal: true } },
+  { id: "pantry", en: "Pantry staples (oil, salt, spices)", es: "Básicos de despensa (aceite, sal, especias)", aliases: ["oil", "aceite", "spices", "especias", "salt", "sal"], unit: "serving", unitEn: "servings", unitEs: "porciones", costCents: 6, tags: {} }
+];
+function byId(id) {
+  for (var i = 0; i < CATALOG.length; i++) if (CATALOG[i].id === id) return CATALOG[i];
+  throw new Error("catalog: unknown item " + id);
+}
+function matchCatalog(name) {
+  var n = name.trim().toLowerCase();
+  if (!n) return null;
+  var best = null, bestLen = 0;
+  for (var i = 0; i < CATALOG.length; i++) {
+    var item = CATALOG[i];
+    var names = [item.en.toLowerCase(), item.es.toLowerCase()].concat(item.aliases);
+    for (var j = 0; j < names.length; j++) {
+      var alias = names[j];
+      if ((n === alias || n.indexOf(alias) !== -1 || alias.indexOf(n) !== -1) && alias.length > bestLen) {
+        best = item; bestLen = alias.length;
+      }
+    }
+  }
+  return best;
+}
+function parseOnHandQty(text, item) {
+  if (!text) return null;
+  var m = text.replace(",", ".").match(/(-?\d+(?:\.\d+)?)/);
+  if (!m || !m[1]) return null;
+  var value = parseFloat(m[1]);
+  if (!isFinite(value) || value <= 0) return null;
+  var lower = text.toLowerCase();
+  if (item.unit === "lb") {
+    if (/\bkg\b|kilo/.test(lower)) return value * 2.20462;
+    if (/\boz\b|onza/.test(lower)) return value / 16;
+    if (/\bg\b|gram/.test(lower)) return value / 453.592;
+    return value;
+  }
+  if (item.unit === "dozen") {
+    if (/dozen|docena/.test(lower)) return value;
+    if (value >= 6) return value / 12;
+    return value;
+  }
+  return value;
+}
+
+// Equipment: 0 = no cooking, 1 = one burner, 2 = full kitchen
+var EQUIP_LEVEL = { none: 0, limited: 1, full: 2 };
+var EQUIP_LABELS = {
+  full: { en: "a full kitchen", es: "una cocina completa" },
+  limited: { en: "limited equipment (one burner)", es: "equipo limitado (una hornilla)" },
+  none: { en: "no cooking equipment", es: "sin equipo de cocina" }
+};
+var EQUIPMENT = [
+  { id: "full", en: "Full kitchen", es: "Cocina completa" },
+  { id: "limited", en: "Limited — one burner / basic stove", es: "Limitado — una hornilla / estufa básica" },
+  { id: "none", en: "No cooking — serve as-is", es: "Sin cocción — servir tal cual" }
+];
+
+// Dish templates. Quantities are per person.
+var MAINS = [
+  { id: "chicken-rice", nameEn: "Herb Chicken & Rice with Mixed Vegetables", nameEs: "Pollo a las hierbas con arroz y verduras mixtas",
+    components: [ { itemId: "chicken", perPerson: 0.4 }, { itemId: "rice", perPerson: 0.18 }, { itemId: "mixedVeg", perPerson: 0.3 }, { itemId: "onion", perPerson: 0.08 } ],
+    minEquip: 2,
+    cookEn: "Cook the chicken in batches until it reaches 165°F / 74°C inside; cook the rice separately and hold both hot.",
+    cookEs: "Cocina el pollo en tandas hasta que alcance 165°F / 74°C por dentro; cocina el arroz por separado y mantén ambos calientes." },
+  { id: "turkey-chili", nameEn: "Turkey & Bean Chili", nameEs: "Chili de pavo y frijoles",
+    components: [ { itemId: "turkey", perPerson: 0.3 }, { itemId: "dryBeans", perPerson: 0.12 }, { itemId: "cannedTomatoes", perPerson: 0.25 }, { itemId: "corn", perPerson: 0.15 }, { itemId: "onion", perPerson: 0.1 } ],
+    minEquip: 1,
+    cookEn: "Brown the turkey, then simmer the chili at least 45 minutes. If dry beans are not pre-soaked, start them hours ahead or swap to canned beans.",
+    cookEs: "Dora el pavo y luego cocina el chili a fuego lento al menos 45 minutos. Si los frijoles secos no están remojados, empieza horas antes o usa frijoles enlatados." },
+  { id: "lentil-soup", nameEn: "Lentil & Vegetable Soup", nameEs: "Sopa de lentejas y verduras",
+    components: [ { itemId: "lentils", perPerson: 0.16 }, { itemId: "potatoes", perPerson: 0.3 }, { itemId: "carrots", perPerson: 0.15 }, { itemId: "onion", perPerson: 0.1 } ],
+    minEquip: 1,
+    cookEn: "Simmer lentils, potatoes, and carrots in plenty of water until tender, about 35–40 minutes. No soaking needed.",
+    cookEs: "Hierve las lentejas, papas y zanahorias en abundante agua hasta que estén tiernas, unos 35–40 minutos. No necesitan remojo." },
+  { id: "pasta-bean", nameEn: "Pasta with White Bean & Vegetable Sauce", nameEs: "Pasta con salsa de frijoles blancos y verduras",
+    components: [ { itemId: "pasta", perPerson: 0.22 }, { itemId: "cannedBeans", perPerson: 0.25 }, { itemId: "cannedTomatoes", perPerson: 0.2 }, { itemId: "mixedVeg", perPerson: 0.2 } ],
+    minEquip: 2,
+    cookEn: "Cook pasta in large pots of salted water; warm the bean and tomato sauce separately and combine at serving time so the pasta does not go soft.",
+    cookEs: "Cocina la pasta en ollas grandes con agua con sal; calienta la salsa de frijoles y tomate por separado y combínala al servir para que la pasta no se ablande." },
+  { id: "egg-hash", nameEn: "Egg & Potato Hash", nameEs: "Picadillo de huevo y papa",
+    components: [ { itemId: "eggs", perPerson: 0.17 }, { itemId: "potatoes", perPerson: 0.4 }, { itemId: "mixedVeg", perPerson: 0.2 }, { itemId: "onion", perPerson: 0.1 } ],
+    minEquip: 1,
+    cookEn: "Crisp the potatoes first, then add vegetables and pour in the beaten eggs near serving time so they stay soft.",
+    cookEs: "Dora las papas primero, luego agrega las verduras y vierte los huevos batidos cerca de la hora de servir para que queden suaves." },
+  { id: "pork-sandwich", nameEn: "Pulled Pork Sandwiches with Carrot Slaw", nameEs: "Sándwiches de cerdo desmenuzado con ensalada de zanahoria",
+    components: [ { itemId: "pork", perPerson: 0.38 }, { itemId: "rolls", perPerson: 1 }, { itemId: "carrots", perPerson: 0.1 }, { itemId: "greens", perPerson: 0.08 } ],
+    minEquip: 2,
+    cookEn: "Slow-cook the pork shoulder until it shreds easily (plan 3–4 hours, or use a pressure cooker); keep the slaw cold until serving.",
+    cookEs: "Cocina la paleta de cerdo a fuego lento hasta que se desmenuce fácil (planea 3–4 horas, o usa olla a presión); mantén la ensalada fría hasta servir." },
+  { id: "tofu-stirfry", nameEn: "Tofu & Vegetable Stir-Fry with Rice", nameEs: "Salteado de tofu y verduras con arroz",
+    components: [ { itemId: "tofu", perPerson: 0.3 }, { itemId: "rice", perPerson: 0.18 }, { itemId: "mixedVeg", perPerson: 0.35 }, { itemId: "onion", perPerson: 0.08 } ],
+    minEquip: 2,
+    cookEn: "Sear the tofu in batches, stir-fry the vegetables hot and fast, and cook the rice separately. Serve right away for the best texture.",
+    cookEs: "Sella el tofu en tandas, saltea las verduras a fuego alto y rápido, y cocina el arroz por separado. Sirve enseguida para la mejor textura." },
+  { id: "beef-stew", nameEn: "Beef & Potato Stew", nameEs: "Guiso de res y papa",
+    components: [ { itemId: "beef", perPerson: 0.32 }, { itemId: "potatoes", perPerson: 0.35 }, { itemId: "carrots", perPerson: 0.18 }, { itemId: "onion", perPerson: 0.1 } ],
+    minEquip: 1,
+    cookEn: "Brown the beef, then simmer with potatoes and carrots until everything is tender, about 60–75 minutes.",
+    cookEs: "Dora la carne y luego cocina a fuego lento con papas y zanahorias hasta que todo esté tierno, unos 60–75 minutos." },
+  { id: "bean-corn-salad", nameEn: "Bean & Corn Salad with Greens", nameEs: "Ensalada de frijoles y maíz con hojas verdes",
+    components: [ { itemId: "cannedBeans", perPerson: 0.3 }, { itemId: "corn", perPerson: 0.2 }, { itemId: "greens", perPerson: 0.1 }, { itemId: "onion", perPerson: 0.06 } ],
+    minEquip: 0,
+    cookEn: "No cooking: drain and rinse the canned beans, thaw the corn, fold everything together with the chopped onion, and chill until serving.",
+    cookEs: "Sin cocción: escurre y enjuaga los frijoles enlatados, descongela el maíz, mezcla todo con la cebolla picada y enfría hasta servir." }
+];
+var SIDES = [
+  { id: "side-salad", nameEn: "Garden Salad", nameEs: "Ensalada del huerto",
+    components: [ { itemId: "greens", perPerson: 0.12 }, { itemId: "carrots", perPerson: 0.06 } ],
+    minEquip: 0,
+    cookEn: "Wash, dry, and chill the greens; assemble the salad at serving time.",
+    cookEs: "Lava, seca y enfría las hojas; arma la ensalada al momento de servir." },
+  { id: "side-corn", nameEn: "Seasoned Corn", nameEs: "Maíz sazonado",
+    components: [ { itemId: "corn", perPerson: 0.25 } ],
+    minEquip: 1,
+    cookEn: "Steam the corn until bright and hot; season lightly.",
+    cookEs: "Cocina el maíz al vapor hasta que esté caliente; sazona ligeramente." },
+  { id: "side-banana", nameEn: "Fresh Banana", nameEs: "Plátano fresco",
+    components: [ { itemId: "bananas", perPerson: 1 } ],
+    minEquip: 0,
+    cookEn: "Keep bananas whole and serve at room temperature.",
+    cookEs: "Mantén los plátanos enteros y sirve a temperatura ambiente." },
+  { id: "side-rolls", nameEn: "Dinner Rolls", nameEs: "Panecillos",
+    components: [ { itemId: "rolls", perPerson: 1 } ],
+    minEquip: 0,
+    cookEn: "Warm the rolls briefly if you can; they are fine served at room temperature.",
+    cookEs: "Calienta los panecillos brevemente si puedes; también se pueden servir a temperatura ambiente." }
+];
+var LENTIL_SOUP = null;
+for (var li = 0; li < MAINS.length; li++) if (MAINS[li].id === "lentil-soup") LENTIL_SOUP = MAINS[li];
+
+// Restrictions
+var RESTRICTIONS = [
+  { id: "vegetarian", en: "Vegetarian", es: "Vegetariano" },
+  { id: "vegan", en: "Vegan", es: "Vegano" },
+  { id: "gluten-free", en: "Gluten-free", es: "Sin gluten" },
+  { id: "nut-free", en: "Nut allergy", es: "Alergia a las nueces" },
+  { id: "no-pork", en: "No pork", es: "Sin cerdo" },
+  { id: "dairy-free", en: "Dairy-free", es: "Sin lácteos" },
+  { id: "diabetic-friendly", en: "Diabetic-friendly", es: "Apto para diabéticos" }
+];
+var RESTRICTION_LABELS = {};
+RESTRICTIONS.forEach(function (r) { RESTRICTION_LABELS[r.id] = { en: r.en, es: r.es }; });
+
+function dishConflicts(dish, restrictions) {
+  var tags = {};
+  dish.components.forEach(function (c) {
+    var t = byId(c.itemId).tags;
+    if (t.meat) tags.meat = true;
+    if (t.pork) tags.pork = true;
+    if (t.gluten) tags.gluten = true;
+    if (t.dairy) tags.dairy = true;
+    if (t.nuts) tags.nuts = true;
+    if (t.egg) tags.egg = true;
+    if (t.soy) tags.soy = true;
+    if (t.animal) tags.animal = true;
+  });
+  var conflicts = [];
+  restrictions.forEach(function (r) {
+    if (r === "vegetarian" && tags.meat) conflicts.push(r);
+    if (r === "vegan" && (tags.animal || tags.egg)) conflicts.push(r);
+    if (r === "gluten-free" && tags.gluten) conflicts.push(r);
+    if (r === "nut-free" && tags.nuts) conflicts.push(r);
+    if (r === "no-pork" && tags.pork) conflicts.push(r);
+    if (r === "dairy-free" && tags.dairy) conflicts.push(r);
+  });
+  return conflicts;
+}
+function dishCostPerPersonCents(dish) {
+  return dish.components.reduce(function (sum, c) { return sum + c.perPerson * byId(c.itemId).costCents; }, 0);
+}
+
+// Allergies
+var ALLERGENS = [
+  { id: "peanut", en: "Peanuts", es: "Maní / cacahuate" },
+  { id: "tree-nut", en: "Tree nuts", es: "Nueces de árbol" },
+  { id: "egg", en: "Egg", es: "Huevo" },
+  { id: "dairy", en: "Dairy / milk", es: "Lácteos / leche" },
+  { id: "gluten", en: "Gluten / wheat", es: "Gluten / trigo" },
+  { id: "shellfish", en: "Shellfish", es: "Mariscos" },
+  { id: "fish", en: "Fish", es: "Pescado" },
+  { id: "soy", en: "Soy", es: "Soya" },
+  { id: "sesame", en: "Sesame", es: "Sésamo / ajonjolí" }
+];
+var ALLERGEN_LABELS = {};
+ALLERGENS.forEach(function (a) { ALLERGEN_LABELS[a.id] = { en: a.en, es: a.es }; });
+
+function itemAllergenIds(item) {
+  var ids = [];
+  function add(x) { if (ids.indexOf(x) === -1) ids.push(x); }
+  if (item.tags.egg) add("egg");
+  if (item.tags.dairy) add("dairy");
+  if (item.tags.gluten) add("gluten");
+  if (item.tags.nuts) add("tree-nut");
+  if (item.tags.soy) add("soy");
+  var names = [item.en, item.es].concat(item.aliases).join(" ").toLowerCase();
+  if (/peanut|maní|mani|cacahuate/.test(names)) add("peanut");
+  if (/shrimp|shellfish|camar|marisco|crab|langosta/.test(names)) add("shellfish");
+  if (/fish|pescado|salm|tuna|atún|atun/.test(names)) add("fish");
+  if (/sesame|sésamo|sesamo|ajonjolí|ajonjoli/.test(names)) add("sesame");
+  return ids;
+}
+var ALLERGY_NOTE = {
+  en: "ALLERGY REVIEW REQUIRED — An organizer must review every ingredient label and each preparation step before serving. This planner flags the ingredients it recognizes; it does NOT guarantee allergen safety, and controlling cross-contact in a shared kitchen is the organizer's responsibility.",
+  es: "REVISIÓN DE ALERGIAS OBLIGATORIA — Un organizador debe revisar cada etiqueta de ingrediente y cada paso de preparación antes de servir. Este planificador marca los ingredientes que reconoce; NO garantiza seguridad frente a alérgenos, y controlar el contacto cruzado en una cocina compartida es responsabilidad del organizador."
+};
+
+// Formatting helpers
+function fmtQty(qty) {
+  if (qty >= 100) return String(Math.round(qty));
+  var rounded = Math.round(qty * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+}
+function roundBuyQty(qty, unit) {
+  if (qty <= 0) return 0;
+  if (unit === "lb") return Math.ceil(qty * 4) / 4;
+  return Math.ceil(qty);
+}
+
+// ---------------------------------------------------------------------------
+// Planning engine (faithful port of buildPlan in server/src/actions.ts)
+// ---------------------------------------------------------------------------
+function computeGrocery(needs, onHandByItem) {
+  var grocery = [];
+  var totalCents = 0;
+  var entries = [];
+  needs.forEach(function (v, k) { entries.push([k, v]); });
+  entries.sort(function (a, b) { return byId(a[0]).en.localeCompare(byId(b[0]).en); });
+  entries.forEach(function (pair) {
+    var itemId = pair[0], neededQty = pair[1];
+    var item = byId(itemId);
+    var onHandQty = onHandByItem.has(itemId) ? onHandByItem.get(itemId) : 0;
+    var applied = Math.min(onHandQty, neededQty);
+    var remaining = Math.max(0, neededQty - applied);
+    var buyQty = roundBuyQty(remaining, item.unit);
+    var lineTotal = Math.round(buyQty * item.costCents);
+    totalCents += lineTotal;
+    grocery.push({
+      itemEn: item.en, itemEs: item.es,
+      needed: Math.round(neededQty * 100) / 100,
+      unitEn: item.unitEn, unitEs: item.unitEs,
+      onHandApplied: Math.round(applied * 100) / 100,
+      onHandNoteEn: applied > 0 ? fmtQty(applied) + " " + item.unitEn + " from on hand" : null,
+      onHandNoteEs: applied > 0 ? fmtQty(applied) + " " + item.unitEs + " de lo disponible" : null,
+      buyQty: buyQty,
+      unitCostCents: item.costCents,
+      lineTotalCents: lineTotal,
+      coveredByOnHand: buyQty === 0
+    });
+  });
+  return { grocery: grocery, totalCents: totalCents };
+}
+
+function buildPlan(input) {
+  var headcount = input.headcount;
+  var currency = input.currency;
+  var symbol = CURRENCY_SYMBOLS[currency];
+  var money = function (cents) { return symbol + (cents / 100).toFixed(2); };
+  var budgetCents = Math.round(input.budgetDollars * 100);
+  var restrictions = input.restrictions;
+  var allergies = input.allergies || [];
+  var equipment = input.equipment;
+  var level = EQUIP_LEVEL[equipment];
+
+  // Resolve on-hand ingredients against the catalog.
+  var onHandByItem = new Map();
+  var usedOnHand = [];
+  var unmatchedOnHand = [];
+  var uncountedOnHand = [];
+  var matchedOnHandItems = [];
+  input.ingredientsOnHand.forEach(function (raw) {
+    var item = matchCatalog(raw.name);
+    if (!item) { unmatchedOnHand.push(raw.name); return; }
+    matchedOnHandItems.push(item);
+    var qty = parseOnHandQty(raw.qty, item);
+    if (qty === null) {
+      uncountedOnHand.push({ en: item.en, es: item.es });
+    } else {
+      onHandByItem.set(item.id, (onHandByItem.has(item.id) ? onHandByItem.get(item.id) : 0) + qty);
+    }
+    usedOnHand.push({ en: item.en, es: item.es });
+  });
+  function onHandMatchCount(dish) {
+    return dish.components.filter(function (c) {
+      return onHandByItem.has(c.itemId) || uncountedOnHand.some(function (u) { return u.en === byId(c.itemId).en; });
+    }).length;
+  }
+  function templateOf(dish) {
+    var all = MAINS.concat(SIDES);
+    for (var i = 0; i < all.length; i++) if (dish.nameEn.indexOf(all[i].nameEn) === 0) return all[i];
+    return undefined;
+  }
+
+  // --- Failure path 1: no main dish the selected equipment can make. ------
+  var equipPool = MAINS.filter(function (m) { return m.minEquip <= level; });
+  if (equipPool.length === 0) {
+    var satisfyingAny = MAINS.filter(function (m) { return dishConflicts(m, restrictions).length === 0; });
+    return {
+      kind: "cannot",
+      titleEn: "No honest plan for " + headcount + " servings",
+      titleEs: "No hay un plan honesto para " + headcount + " porciones",
+      currency: currency, currencySymbol: symbol,
+      reasons: [{
+        en: "No main dish in the planner can be made with " + EQUIP_LABELS[equipment].en + ", so no plan was built rather than inventing one.",
+        es: "Ningún plato principal del planificador puede prepararse con " + EQUIP_LABELS[equipment].es + ", así que no se creó ningún plan en lugar de inventar uno."
+      }],
+      couldDo: satisfyingAny.map(function (d) {
+        return { en: "With more equipment it could serve: " + d.nameEn + ".", es: "Con más equipo podría servir: " + d.nameEs + "." };
+      }),
+      couldNot: [{
+        en: "It cannot invent a dish outside its tested menu, and it will not ignore a stated restriction or allergy to force a plan.",
+        es: "No puede inventar un plato fuera de su menú probado, ni ignorar una restricción o alergia indicada para forzar un plan."
+      }]
+    };
+  }
+
+  // Choose the main dish.
+  var satisfying = equipPool.filter(function (m) { return dishConflicts(m, restrictions).length === 0; });
+  var pool = satisfying.length > 0 ? satisfying : equipPool;
+  var main = pool.slice().sort(function (a, b) {
+    var matchDiff = onHandMatchCount(b) - onHandMatchCount(a);
+    if (matchDiff !== 0) return matchDiff;
+    return dishCostPerPersonCents(a) - dishCostPerPersonCents(b);
+  })[0];
+  var mainConflicts = dishConflicts(main, restrictions);
+
+  function pickFallback() {
+    var candidates = MAINS.filter(function (m) {
+      return m.minEquip <= level && dishConflicts(m, restrictions).length === 0;
+    }).sort(function (a, b) { return dishCostPerPersonCents(a) - dishCostPerPersonCents(b); });
+    return candidates.length ? candidates[0] : null;
+  }
+  var fallback = pickFallback();
+
+  var warnings = [];
+  var dishes = [];
+  var needs = new Map();
+  function addDishNeeds(dish, servings) {
+    dish.components.forEach(function (c) {
+      needs.set(c.itemId, (needs.has(c.itemId) ? needs.get(c.itemId) : 0) + c.perPerson * servings);
+    });
+    needs.set("pantry", (needs.has("pantry") ? needs.get("pantry") : 0) + servings);
+  }
+
+  var mainSatisfies = restrictions.filter(function (r) { return mainConflicts.indexOf(r) === -1; });
+  dishes.push({
+    nameEn: main.nameEn, nameEs: main.nameEs, kind: "main", servings: headcount,
+    satisfiesEn: mainSatisfies.map(function (r) { return RESTRICTION_LABELS[r].en; }),
+    satisfiesEs: mainSatisfies.map(function (r) { return RESTRICTION_LABELS[r].es; }),
+    conflictsEn: mainConflicts.map(function (r) { return RESTRICTION_LABELS[r].en; }),
+    conflictsEs: mainConflicts.map(function (r) { return RESTRICTION_LABELS[r].es; }),
+    cookEn: main.cookEn, cookEs: main.cookEs
+  });
+  addDishNeeds(main, headcount);
+
+  // Side dish: equipment-compatible and restriction-safe, cheapest first,
+  // keeping a side only when the real (net of on-hand) total stays in budget.
+  var sideCandidates = SIDES.filter(function (s) {
+    return s.minEquip <= level && dishConflicts(s, restrictions).length === 0;
+  }).sort(function (a, b) { return dishCostPerPersonCents(a) - dishCostPerPersonCents(b); });
+  var side = null;
+  var cheapestSideExtra = null;
+  for (var si = 0; si < sideCandidates.length; si++) {
+    var candidate = sideCandidates[si];
+    var savedNeeds = new Map(needs);
+    addDishNeeds(candidate, headcount);
+    var trial = computeGrocery(needs, onHandByItem);
+    var extra = trial.totalCents - computeGrocery(savedNeeds, onHandByItem).totalCents;
+    if (cheapestSideExtra === null) cheapestSideExtra = { dish: candidate, extraCents: extra };
+    if (trial.totalCents <= budgetCents) { side = candidate; break; }
+    needs.clear();
+    savedNeeds.forEach(function (v, k) { needs.set(k, v); });
+  }
+  if (input.budgetDollars > 0 && !side && cheapestSideExtra) {
+    warnings.push({
+      en: "Budget does not leave room for a side dish. The cheapest side (" + cheapestSideExtra.dish.nameEn + ") would add about " + money(cheapestSideExtra.extraCents) + " (estimate).",
+      es: "El presupuesto no deja margen para un acompañamiento. El más económico (" + cheapestSideExtra.dish.nameEs + ") agregaría unos " + money(cheapestSideExtra.extraCents) + " (estimado)."
+    });
+  }
+  if (side) {
+    dishes.push({
+      nameEn: side.nameEn, nameEs: side.nameEs, kind: "side", servings: headcount,
+      satisfiesEn: restrictions.map(function (r) { return RESTRICTION_LABELS[r].en; }),
+      satisfiesEs: restrictions.map(function (r) { return RESTRICTION_LABELS[r].es; }),
+      conflictsEn: [], conflictsEs: [],
+      cookEn: side.cookEn, cookEs: side.cookEs
+    });
+  }
+
+  // Restricted-diet accommodation batch.
+  var accommodationServings = input.accommodationServings || 0;
+  if (restrictions.length > 0 && mainConflicts.length > 0) {
+    if (accommodationServings > 0 && fallback) {
+      dishes.push({
+        nameEn: fallback.nameEn + " (separate restricted-diet batch)",
+        nameEs: fallback.nameEs + " (porción separada para dietas restringidas)",
+        kind: "accommodation", servings: accommodationServings,
+        satisfiesEn: restrictions.map(function (r) { return RESTRICTION_LABELS[r].en; }),
+        satisfiesEs: restrictions.map(function (r) { return RESTRICTION_LABELS[r].es; }),
+        conflictsEn: [], conflictsEs: [],
+        cookEn: fallback.cookEn, cookEs: fallback.cookEs
+      });
+      addDishNeeds(fallback, accommodationServings);
+    } else if (accommodationServings > 0 && !fallback) {
+      warnings.push({
+        en: "No separate restricted-diet batch can be made with " + EQUIP_LABELS[equipment].en + " that satisfies every listed restriction, so none was added. Do not serve the main dish to guests with those restrictions.",
+        es: "No se puede preparar una porción separada para dietas restringidas con " + EQUIP_LABELS[equipment].es + " que cumpla todas las restricciones indicadas, así que no se agregó ninguna. No sirvas el plato principal a invitados con esas restricciones."
+      });
+    } else if (fallback) {
+      warnings.push({
+        en: "The main dish does not satisfy: " + mainConflicts.map(function (r) { return RESTRICTION_LABELS[r].en; }).join(", ") + ". Enter how many servings need a separate restricted-diet batch and the plan will add one (" + fallback.nameEn + " satisfies every listed restriction and can be made with the selected equipment). Until then, do not serve the main dish to guests with those restrictions.",
+        es: "El plato principal no cumple: " + mainConflicts.map(function (r) { return RESTRICTION_LABELS[r].es; }).join(", ") + ". Ingresa cuántas porciones necesitan una preparación separada y el plan agregará una (" + fallback.nameEs + " cumple todas las restricciones indicadas y puede prepararse con el equipo seleccionado). Mientras tanto, no sirvas el plato principal a invitados con esas restricciones."
+      });
+    } else {
+      warnings.push({
+        en: "The main dish does not satisfy: " + mainConflicts.map(function (r) { return RESTRICTION_LABELS[r].en; }).join(", ") + ", and no restriction-safe dish can be made with " + EQUIP_LABELS[equipment].en + ". Do not serve the main dish to guests with those restrictions.",
+        es: "El plato principal no cumple: " + mainConflicts.map(function (r) { return RESTRICTION_LABELS[r].es; }).join(", ") + ", y ningún plato seguro puede prepararse con " + EQUIP_LABELS[equipment].es + ". No sirvas el plato principal a invitados con esas restricciones."
+      });
+    }
+  }
+
+  var other = (input.otherRestrictions || "").trim();
+  if (other) {
+    warnings.push({
+      en: "You also listed: \"" + other + "\". The planner checked the standard restrictions above only — review the menu against this need yourself before serving.",
+      es: "También indicaste: \"" + other + "\". El planificador verificó solo las restricciones estándar de arriba — revisa el menú frente a esta necesidad antes de servir."
+    });
+  }
+  if (restrictions.indexOf("diabetic-friendly") !== -1) {
+    warnings.push({
+      en: "Diabetic-friendly: every menu in this planner is built without added sugar or sweetened drinks. Serve water, and let guests with diabetes judge portions of rice, pasta, and potatoes for themselves.",
+      es: "Apto para diabéticos: todos los menús de este planificador se preparan sin azúcar añadida ni bebidas azucaradas. Sirve agua, y deja que los invitados con diabetes decidan sus porciones de arroz, pasta y papas."
+    });
+  }
+  uncountedOnHand.forEach(function (u) {
+    warnings.push({
+      en: u.en + " is on hand but no usable quantity was given, so the grocery list does not count it — you may need to buy less than listed. Add a quantity (for example \"8 lb\") to count it exactly.",
+      es: u.es + " está disponible pero sin una cantidad utilizable, así que la lista de compras no lo descuenta — quizás necesites comprar menos de lo indicado. Agrega una cantidad (por ejemplo \"8 lb\") para contarlo con exactitud."
+    });
+  });
+
+  var computed = computeGrocery(needs, onHandByItem);
+  var grocery = computed.grocery, totalCents = computed.totalCents;
+
+  // --- Failure path 2: budget is 0 and the missing items cost money. ------
+  if (budgetCents === 0 && totalCents > 0) {
+    var covered = grocery.filter(function (g) { return g.onHandApplied > 0; });
+    var missing = grocery.filter(function (g) { return g.buyQty > 0; });
+    var couldDo = [];
+    if (covered.length > 0) {
+      couldDo.push({
+        en: "Your on-hand ingredients already cover part of the menu: " + covered.map(function (g) { return g.itemEn + " (" + fmtQty(g.onHandApplied) + " " + g.unitEn + ")"; }).join(", ") + ".",
+        es: "Tus ingredientes disponibles ya cubren parte del menú: " + covered.map(function (g) { return g.itemEs + " (" + fmtQty(g.onHandApplied) + " " + g.unitEs + ")"; }).join(", ") + "."
+      });
+    }
+    couldDo.push({
+      en: "Set a budget of at least about " + money(totalCents) + " (" + currency + ", estimate) and this same menu can be built for " + headcount + " people.",
+      es: "Fija un presupuesto de al menos unos " + money(totalCents) + " (" + currency + ", estimado) y este mismo menú puede prepararse para " + headcount + " personas."
+    });
+    return {
+      kind: "cannot",
+      titleEn: "No honest plan for " + headcount + " servings at " + money(0),
+      titleEs: "No hay un plan honesto para " + headcount + " porciones con " + money(0),
+      currency: currency, currencySymbol: symbol,
+      reasons: [{
+        en: "The budget is " + money(0) + " and the missing ingredients for the closest menu (" + main.nameEn + ") cost about " + money(totalCents) + " (estimate). A complete plan cannot be bought for " + money(0) + ", so no plan was saved.",
+        es: "El presupuesto es " + money(0) + " y los ingredientes faltantes para el menú más cercano (" + main.nameEs + ") cuestan unos " + money(totalCents) + " (estimado). Un plan completo no puede comprarse por " + money(0) + ", así que no se guardó ningún plan."
+      }],
+      couldDo: couldDo,
+      couldNot: [
+        {
+          en: "It cannot buy the missing items for " + money(0) + ": " + missing.slice(0, 4).map(function (g) { return g.itemEn; }).join(", ") + (missing.length > 4 ? ", …" : "") + ".",
+          es: "No puede comprar los ingredientes faltantes por " + money(0) + ": " + missing.slice(0, 4).map(function (g) { return g.itemEs; }).join(", ") + (missing.length > 4 ? ", …" : "") + "."
+        },
+        {
+          en: "It will not shrink portions below one serving per person, drop a stated restriction, or list missing items as free to force the numbers to fit.",
+          es: "No reducirá las porciones por debajo de una por persona, ni eliminará una restricción indicada, ni mostrará los ingredientes faltantes como gratuitos para forzar los números."
+        }
+      ]
+    };
+  }
+
+  var diffCents = budgetCents - totalCents;
+  var verdict = diffCents > 0 ? "under" : diffCents < 0 ? "over" : "exact";
+
+  var cheapestFix = null;
+  if (verdict === "over") {
+    var priciest = grocery.filter(function (g) { return g.buyQty > 0; }).sort(function (a, b) { return b.lineTotalCents - a.lineTotalCents; })[0];
+    if (priciest) {
+      cheapestFix = {
+        en: "Over budget by " + money(-diffCents) + ". The biggest line is " + priciest.itemEn + " at " + money(priciest.lineTotalCents) + " (estimate). The cheapest fix the planner can compute: build the main around lentils or beans (" + LENTIL_SOUP.nameEn + " costs about " + money(Math.round(dishCostPerPersonCents(LENTIL_SOUP))) + " per person, estimate) or reduce servings of the priciest item — re-run with the lentil soup ingredients on hand to see the new total.",
+        es: "Sobre el presupuesto por " + money(-diffCents) + ". La línea mayor es " + priciest.itemEs + " con " + money(priciest.lineTotalCents) + " (estimado). La corrección más económica que el planificador puede calcular: preparar el plato principal con lentejas o frijoles (" + LENTIL_SOUP.nameEs + " cuesta unos " + money(Math.round(dishCostPerPersonCents(LENTIL_SOUP))) + " por persona, estimado) o reducir las porciones del ingrediente más caro — vuelve a ejecutar con los ingredientes de la sopa de lentejas disponibles para ver el nuevo total."
+      };
+    }
+  }
+
+  // --- Allergy flags -------------------------------------------------------
+  var allergyFlags = [];
+  var otherAllergies = (input.otherAllergies || "").trim();
+  var allergyReviewRequired = allergies.length > 0 || otherAllergies !== "";
+  if (allergyReviewRequired) {
+    allergies.forEach(function (a) {
+      var label = ALLERGEN_LABELS[a];
+      dishes.forEach(function (dish) {
+        var template = templateOf(dish);
+        if (!template) return;
+        var hits = template.components.map(function (c) { return byId(c.itemId); }).filter(function (item) { return itemAllergenIds(item).indexOf(a) !== -1; });
+        if (hits.length > 0) {
+          allergyFlags.push({
+            en: "⚠ " + label.en + " allergy: " + hits.map(function (h) { return h.en; }).join(", ") + " appear(s) in " + dish.nameEn + ".",
+            es: "⚠ Alergia a " + label.es + ": " + hits.map(function (h) { return h.es; }).join(", ") + " aparece(n) en " + dish.nameEs + "."
+          });
+        }
+      });
+      var onHandHits = matchedOnHandItems.filter(function (item) { return itemAllergenIds(item).indexOf(a) !== -1; });
+      if (onHandHits.length > 0) {
+        allergyFlags.push({
+          en: "⚠ " + label.en + " allergy: " + onHandHits.map(function (h) { return h.en; }).join(", ") + " is/are among your on-hand ingredients — keep apart and review before use.",
+          es: "⚠ Alergia a " + label.es + ": " + onHandHits.map(function (h) { return h.es; }).join(", ") + " está(n) entre tus ingredientes disponibles — manténlos apartados y revísalos antes de usarlos."
+        });
+      }
+    });
+    if (otherAllergies) {
+      var terms = otherAllergies.split(/[,;]/).map(function (s) { return s.trim().toLowerCase(); }).filter(function (s) { return s.length >= 3; });
+      var allItems = new Map();
+      dishes.forEach(function (dish) {
+        var template = templateOf(dish);
+        if (template) template.components.forEach(function (c) { allItems.set(c.itemId, byId(c.itemId)); });
+      });
+      matchedOnHandItems.forEach(function (item) { allItems.set(item.id, item); });
+      terms.forEach(function (term) {
+        var hits = [];
+        allItems.forEach(function (item) {
+          var names = [item.en, item.es].concat(item.aliases);
+          if (names.some(function (n) { return n.toLowerCase().indexOf(term) !== -1; })) hits.push(item);
+        });
+        if (hits.length > 0) {
+          allergyFlags.push({
+            en: "⚠ Allergy \"" + term + "\": matched " + hits.map(function (h) { return h.en; }).join(", ") + " in the plan or on hand — review required.",
+            es: "⚠ Alergia \"" + term + "\": coincide con " + hits.map(function (h) { return h.es; }).join(", ") + " en el plan o en lo disponible — se requiere revisión."
+          });
+        }
+      });
+    }
+    if (allergyFlags.length === 0) {
+      allergyFlags.push({
+        en: "No stated allergen was found in the planned dishes or the matched on-hand ingredients — ingredient labels and cross-contact still need the organizer review below.",
+        es: "No se encontró ningún alérgeno indicado en los platos planificados ni en los ingredientes disponibles identificados — las etiquetas y el contacto cruzado aún necesitan la revisión del organizador indicada abajo."
+      });
+    }
+  }
+
+  // Volunteer prep checklist, in serving order.
+  var checklist = [];
+  function step(phaseEn, phaseEs, en, es) { checklist.push({ phaseEn: phaseEn, phaseEs: phaseEs, en: en, es: es }); }
+  step("Setup", "Preparación del espacio",
+    "Set up the serving line for " + headcount + " guests: tables, trays, serving spoons, gloves, and a hand-washing station.",
+    "Prepara la línea de servicio para " + headcount + " invitados: mesas, bandejas, cucharas de servir, guantes y una estación para lavarse las manos.");
+  step("Setup", "Preparación del espacio",
+    "Wash hands, tie back hair, and sanitize all food-contact surfaces before any food comes out.",
+    "Lávense las manos, recójanse el cabello y desinfecten todas las superficies de contacto con alimentos antes de sacar cualquier comida.");
+  if (allergyReviewRequired) {
+    step("Setup", "Preparación del espacio",
+      "Allergy control: the organizer reads every ingredient label against the stated allergies, keeps flagged ingredients and their utensils apart, and briefs every volunteer before cooking starts. This tool flags what it recognizes — it does not guarantee allergen safety.",
+      "Control de alergias: el organizador lee cada etiqueta de ingrediente frente a las alergias indicadas, mantiene apartados los ingredientes marcados y sus utensilios, e instruye a cada voluntario antes de empezar a cocinar. Esta herramienta marca lo que reconoce — no garantiza seguridad frente a alérgenos.");
+  }
+  var hasAccommodationDish = dishes.some(function (d) { return d.kind === "accommodation"; });
+  if (hasAccommodationDish) {
+    step("Setup", "Preparación del espacio",
+      "Mark " + accommodationServings + " servings as the separate restricted-diet batch and keep its pan, spoon, and tray apart from the main dish.",
+      "Marca " + accommodationServings + " porciones como la preparación separada para dietas restringidas y mantén su olla, cuchara y bandeja apartadas del plato principal.");
+  }
+  dishes.forEach(function (dish) {
+    var dishTemplate = templateOf(dish);
+    if (dishTemplate) {
+      var parts = dishTemplate.components.map(function (c) {
+        var item = byId(c.itemId);
+        return fmtQty(Math.round(c.perPerson * dish.servings * 100) / 100) + " " + item.unitEn + " " + item.en.toLowerCase();
+      });
+      var partsEs = dishTemplate.components.map(function (c) {
+        var item = byId(c.itemId);
+        return fmtQty(Math.round(c.perPerson * dish.servings * 100) / 100) + " " + item.unitEs + " de " + item.es.toLowerCase();
+      });
+      step("Prep", "Preparación",
+        "Prep for " + dish.nameEn + " (" + dish.servings + " servings): " + parts.join(", ") + ". Wash produce, peel and chop, and measure everything before cooking starts.",
+        "Prepara para " + dish.nameEs + " (" + dish.servings + " porciones): " + partsEs.join(", ") + ". Lava los productos, pela y pica, y mide todo antes de empezar a cocinar.");
+    }
+  });
+  dishes.forEach(function (dish) {
+    step("Cook", "Cocción", dish.nameEn + ": " + dish.cookEn, dish.nameEs + ": " + dish.cookEs);
+  });
+  step("Hold safely", "Mantener seguro",
+    "Hold all hot food at or above 140°F / 60°C. Keep cold items on ice or in the fridge until the moment of serving. Start a simple time log: when each pan came off the heat.",
+    "Mantén toda la comida caliente a 140°F / 60°C o más. Mantén los alimentos fríos en hielo o en el refrigerador hasta el momento de servir. Lleva un registro simple de horarios: cuándo salió cada olla del fuego.");
+  var serveOrder = dishes.filter(function (d) { return d.kind === "side"; })
+    .concat(dishes.filter(function (d) { return d.kind === "main"; }))
+    .concat(dishes.filter(function (d) { return d.kind === "accommodation"; }));
+  step("Serve", "Servir",
+    "Serving order: " + serveOrder.map(function (d) { return d.nameEn; }).join(" → ") + "." + (hasAccommodationDish ? " Serve the restricted-diet batch from its own pan and spoon, and announce it clearly so guests who need it can find it." : ""),
+    "Orden de servicio: " + serveOrder.map(function (d) { return d.nameEs; }).join(" → ") + "." + (hasAccommodationDish ? " Sirve la preparación para dietas restringidas desde su propia olla y cuchara, y anúnciala con claridad para que los invitados que la necesitan la encuentren." : ""));
+  if (hasAccommodationDish) {
+    step("Serve", "Servir",
+      "One volunteer stays on the restricted-diet batch the whole service — never swap spoons between pans.",
+      "Un voluntario se queda a cargo de la preparación para dietas restringidas durante todo el servicio — nunca intercambien cucharas entre ollas.");
+  }
+  step("Pack leftovers", "Guardar sobras",
+    "After 2 hours at room temperature, food must not be served again. Pack safe leftovers into shallow containers, label with today's date, and refrigerate right away.",
+    "Después de 2 horas a temperatura ambiente, la comida no debe servirse de nuevo. Guarda las sobras seguras en recipientes poco profundos, etiquétalos con la fecha de hoy y refrigera enseguida.");
+  step("Clean", "Limpieza",
+    "Wash, rinse, and sanitize all pans and utensils; wipe down the serving line; take out trash and leave the kitchen cleaner than you found it.",
+    "Lava, enjuaga y desinfecta todas las ollas y utensilios; limpia la línea de servicio; saca la basura y deja la cocina más limpia de como la encontraste.");
+
+  return {
+    kind: "plan",
+    titleEn: main.nameEn + " — " + headcount + " servings",
+    titleEs: main.nameEs + " — " + headcount + " porciones",
+    headcount: headcount,
+    currency: currency,
+    currencySymbol: symbol,
+    equipment: equipment,
+    budgetCents: budgetCents,
+    totalCents: totalCents,
+    diffCents: diffCents,
+    verdict: verdict,
+    perPersonCents: headcount > 0 ? Math.round(totalCents / headcount) : 0,
+    dishes: dishes,
+    grocery: grocery,
+    usedOnHand: usedOnHand,
+    unmatchedOnHand: unmatchedOnHand,
+    uncountedOnHand: uncountedOnHand,
+    checklist: checklist,
+    warnings: warnings,
+    allergyFlags: allergyFlags,
+    allergyNote: allergyReviewRequired ? ALLERGY_NOTE : null,
+    cheapestFix: cheapestFix
+  };
+}
+
+// ---------------------------------------------------------------------------
+// UI strings (mirroring client/src/App.tsx)
+// ---------------------------------------------------------------------------
+var S = {
+  en: {
+    planHeading: "Plan a meal service",
+    planIntro: "Tell the coordinator what you have, what you can spend, and how many neighbors are coming. It builds the menu from what's on hand first, then the shopping list, then the serving plan — with every cost shown as an estimate.",
+    engineNote: "Running today: the transparent planning engine (deterministic arithmetic on your device — same inputs, same plan). The Meta Model API generation layer is NOT connected yet; nothing on this page claims Meta AI generation it isn't doing. See the status panel at the bottom for the exact founder setup steps.",
+    deviceNote: "This working copy runs entirely on your device, using the Coordinator's planning engine — your ingredients, budget, and plans are computed here in your browser and never leave it.",
+    metaNotConnected: "Meta AI is NOT connected — the Meta Model API layer is pending the founder's $150 credit claim.",
+    estimatesNote: "All prices are planning estimates, not store prices.",
+    demoLabel: "Try a labeled demo case",
+    onHand: "Ingredients on hand",
+    onHandHint: "One per line. Add a quantity when you know it (e.g. “8 lb”) so the list counts it exactly.",
+    ingredientName: "Ingredient name",
+    ingredientQty: "Quantity (optional)",
+    addIngredient: "Add ingredient",
+    removeIngredient: "Remove ingredient",
+    budget: "Total grocery budget",
+    currency: "Currency for budget & estimates",
+    currencyNote: "Estimates are planning figures written directly in the currency you pick — the planner never converts between currencies or invents an exchange rate.",
+    headcount: "Headcount — people to serve",
+    dietary: "Dietary restrictions / needs",
+    otherNeeds: "Other needs (free text)",
+    otherNeedsPh: "e.g. halal, low sodium…",
+    allergiesTitle: "Allergies (safety — separate from dietary preferences)",
+    allergiesHint: "Tap every allergy that applies. If a plan touches a stated allergy it is flagged, and an organizer must review it before serving — this tool does not guarantee allergen safety.",
+    otherAllergies: "Other allergies (free text)",
+    otherAllergiesPh: "e.g. mustard, celery…",
+    equipmentTitle: "Cooking equipment available",
+    accommodation: "Servings needing a separate restricted-diet batch (optional)",
+    accommodationHint: "Only needed when the main dish can't satisfy a restriction. The plan adds a separate batch and keeps it apart in the checklist.",
+    generate: "Build my meal plan",
+    generating: "Building your plan…",
+    errHeadcount: "Headcount must be a whole number of at least 1 — check the value and try again. Nothing was changed for you.",
+    errBudget: "Budget must be a number of 0 or more (0 is fine when everything is on hand). Nothing was changed for you.",
+    errQty: function (name) { return "The quantity for “" + name + "” must be greater than 0 — fix it or clear the quantity. It was not changed for you."; },
+    errAccommodation: "Separate-batch servings must be a whole number of 0 or more. Nothing was changed for you.",
+    menuTitle: "Menu",
+    mainDish: "Main dish",
+    sideDish: "Side",
+    accommodationDish: "Restricted-diet batch",
+    servings: "servings",
+    satisfies: "Satisfies",
+    conflicts: "Does not satisfy",
+    equipAssumed: "Equipment planned for",
+    allergyBannerTitle: "Allergy review required",
+    groceryTitle: "Grocery list — estimated costs",
+    groceryNote: "Costs are planning estimates, not store prices. What you already have is listed separately from what you still need to buy.",
+    haveTitle: "You already have",
+    buyTitle: "To buy",
+    needCol: "Needed",
+    buyCol: "Buy",
+    estCol: "Est.",
+    onHandApplied: "from on hand",
+    covered: "Covers everything needed — nothing to buy",
+    coversPart: "covers part of what's needed",
+    estTotal: "Estimated total",
+    budgetLine: "Budget",
+    underBy: "UNDER budget by",
+    overBy: "OVER budget by",
+    exactBudget: "Exactly on budget",
+    perPerson: "per person",
+    usedOnHand: "Used from on hand",
+    unmatched: "Not in the planner's catalog — use as available",
+    checklistTitle: "Volunteer prep checklist — in serving order",
+    copyPlan: "Copy the whole plan",
+    copied: "Copied ✓",
+    planSavedNote: "Saved on this device only",
+    failureTitle: "No honest plan for these inputs",
+    couldDoTitle: "What the coordinator could do",
+    couldNotTitle: "What it could not do",
+    failureHint: "Nothing was saved. Change any input above and build again.",
+    savedTitle: "Saved plans",
+    savedDeviceOnly: "Saved on this device only — plans are stored in this browser, on this device. They are not sent anywhere and do not sync to other devices.",
+    noSaved: "No saved plans yet. Build one above and it will be kept here.",
+    load: "Open",
+    deletePlan: "Delete",
+    yourPlan: "Your meal plan",
+    prepTitle: "Status & hackathon submission prep",
+    prepAiTitle: "Which AI integration is actually running",
+    prepAiRunning: "Running today: the transparent planning engine in this app — deterministic arithmetic on your device. It is not a Meta AI model and does not generate text with an LLM.",
+    prepAiNot: "NOT connected yet: the Meta Model API generation layer. No Meta API key is configured, so no Meta AI generation is happening anywhere in this app.",
+    prepSolo: "Entry: SOLO — one participant, no teammates (confirmed by founder, Oct 26).",
+    prepTrack: "Track: NOT named in the Oct 20 acceptance email or the Oct 26 credits email. Do not guess it — Josue confirms it from his Cerebral Valley application before submission.",
+    prepCreditsTitle: "$150 Meta Model API credits — founder steps (no card is added here)",
+    prepCredits1: "1. Submit the credits claim form linked in the Oct 26 Cerebral Valley email (each participant claims individually). Deadline: Nov 4, 9:00 PM ET. Credits arrive in batches — check the Meta Billing page to confirm the free credits are applied.",
+    prepCredits2: "2. To use the credits, a credit card must be on the Meta account — founder's action only. This app adds no card, buys nothing, and enables no paid overages.",
+    prepCredits3: "3. Set the “Spend Limit” notification on the Billing page — understand it clearly: it is an alert, NOT a spending cap.",
+    prepCredits4: "4. When the Meta API key exists, the founder adds it through the secure server-side setup only — never in this page, never in the browser, never in chat. Plans will be labeled Meta-generated only for the parts the API actually produces.",
+    prepDeadline: "Build window Oct 26 – Nov 4, 2026 · Submission due Nov 4, 9:00 PM ET.",
+    factsNote: "Plates for Hope context: ~45 meals served so far through direct community efforts — those meals were not coordinated through this app. Regular Tue/Thu service is a future goal, not current operation; there are no restaurant partnerships yet. Those facts are the project story — never a demo headcount.",
+    copyHeader: "PLATES FOR HOPE — MEAL PLAN",
+    copyMenu: "MENU",
+    copyHave: "GROCERY — YOU ALREADY HAVE",
+    copyBuy: "GROCERY — TO BUY (estimates, not store prices)",
+    copyAllergy: "ALLERGY FLAGS",
+    copyChecklist: "VOLUNTEER CHECKLIST",
+    copyFooter: "Costs are planning estimates, not store prices."
+  },
+  es: {
+    planHeading: "Planifica un servicio de comida",
+    planIntro: "Dile al coordinador qué tienes, cuánto puedes gastar y cuántos vecinos vendrán. Construye el menú primero con lo que hay disponible, luego la lista de compras y luego el plan de servicio — con cada costo mostrado como estimado.",
+    engineNote: "En funcionamiento hoy: el motor de planificación transparente (aritmética determinista en tu dispositivo — los mismos datos, el mismo plan). La capa de generación con la API de Meta Model AÚN NO está conectada; nada en esta página afirma una generación por IA que no está haciendo. Consulta el panel de estado al final para los pasos exactos del fundador.",
+    deviceNote: "Esta copia funcional se ejecuta por completo en tu dispositivo, con el motor de planificación del Coordinador — tus ingredientes, presupuesto y planes se calculan aquí en tu navegador y nunca salen de él.",
+    metaNotConnected: "Meta AI NO está conectado — la capa de la API de Meta Model está pendiente del reclamo de créditos de $150 del fundador.",
+    estimatesNote: "Todos los precios son estimados de planificación, no precios de tienda.",
+    demoLabel: "Prueba un caso demo identificado",
+    onHand: "Ingredientes disponibles",
+    onHandHint: "Uno por línea. Agrega una cantidad cuando la sepas (p. ej. “8 lb”) para que la lista la cuente con exactitud.",
+    ingredientName: "Nombre del ingrediente",
+    ingredientQty: "Cantidad (opcional)",
+    addIngredient: "Agregar ingrediente",
+    removeIngredient: "Quitar ingrediente",
+    budget: "Presupuesto total de compras",
+    currency: "Moneda del presupuesto y los estimados",
+    currencyNote: "Los estimados son cifras de planificación escritas directamente en la moneda que elijas — el planificador nunca convierte entre monedas ni inventa un tipo de cambio.",
+    headcount: "Cantidad de personas a servir",
+    dietary: "Restricciones / necesidades alimentarias",
+    otherNeeds: "Otras necesidades (texto libre)",
+    otherNeedsPh: "p. ej. halal, bajo en sodio…",
+    allergiesTitle: "Alergias (seguridad — aparte de las preferencias alimentarias)",
+    allergiesHint: "Marca cada alergia que aplique. Si un plan toca una alergia indicada, queda marcado y un organizador debe revisarlo antes de servir — esta herramienta no garantiza seguridad frente a alérgenos.",
+    otherAllergies: "Otras alergias (texto libre)",
+    otherAllergiesPh: "p. ej. mostaza, apio…",
+    equipmentTitle: "Equipo de cocina disponible",
+    accommodation: "Porciones que necesitan preparación separada (opcional)",
+    accommodationHint: "Solo hace falta cuando el plato principal no puede cumplir una restricción. El plan agrega una preparación separada y la mantiene apartada en la lista de tareas.",
+    generate: "Crear mi plan de comida",
+    generating: "Creando tu plan…",
+    errHeadcount: "La cantidad de personas debe ser un número entero de al menos 1 — revisa el valor e inténtalo de nuevo. Nada se cambió por ti.",
+    errBudget: "El presupuesto debe ser un número de 0 o más (0 está bien si todo está disponible). Nada se cambió por ti.",
+    errQty: function (name) { return "La cantidad de “" + name + "” debe ser mayor que 0 — corrígela o borra la cantidad. No se cambió por ti."; },
+    errAccommodation: "Las porciones de preparación separada deben ser un número entero de 0 o más. Nada se cambió por ti.",
+    menuTitle: "Menú",
+    mainDish: "Plato principal",
+    sideDish: "Acompañamiento",
+    accommodationDish: "Preparación para dietas restringidas",
+    servings: "porciones",
+    satisfies: "Cumple",
+    conflicts: "No cumple",
+    equipAssumed: "Equipo planificado",
+    allergyBannerTitle: "Revisión de alergias obligatoria",
+    groceryTitle: "Lista de compras — costos estimados",
+    groceryNote: "Los costos son estimados de planificación, no precios de tienda. Lo que ya tienes se lista aparte de lo que aún debes comprar.",
+    haveTitle: "Ya tienes",
+    buyTitle: "Por comprar",
+    needCol: "Se necesita",
+    buyCol: "Comprar",
+    estCol: "Est.",
+    onHandApplied: "de lo disponible",
+    covered: "Cubre todo lo necesario — nada que comprar",
+    coversPart: "cubre parte de lo necesario",
+    estTotal: "Total estimado",
+    budgetLine: "Presupuesto",
+    underBy: "POR DEBAJO del presupuesto por",
+    overBy: "SOBRE el presupuesto por",
+    exactBudget: "Exactamente en el presupuesto",
+    perPerson: "por persona",
+    usedOnHand: "Usado de lo disponible",
+    unmatched: "No está en el catálogo del planificador — úsalo según disponibilidad",
+    checklistTitle: "Lista de tareas para voluntarios — en orden de servicio",
+    copyPlan: "Copiar el plan completo",
+    copied: "Copiado ✓",
+    planSavedNote: "Guardado solo en este dispositivo",
+    failureTitle: "No hay un plan honesto para estos datos",
+    couldDoTitle: "Lo que el coordinador sí pudo hacer",
+    couldNotTitle: "Lo que no pudo hacer",
+    failureHint: "No se guardó nada. Cambia cualquier dato arriba y crea el plan de nuevo.",
+    savedTitle: "Planes guardados",
+    savedDeviceOnly: "Guardado solo en este dispositivo — los planes se almacenan en este navegador, en este dispositivo. No se envían a ningún lado ni se sincronizan con otros dispositivos.",
+    noSaved: "Aún no hay planes guardados. Crea uno arriba y quedará guardado aquí.",
+    load: "Abrir",
+    deletePlan: "Borrar",
+    yourPlan: "Tu plan de comida",
+    prepTitle: "Estado y preparación de la entrega",
+    prepAiTitle: "Qué integración de IA está funcionando realmente",
+    prepAiRunning: "En funcionamiento hoy: el motor de planificación transparente de esta app — aritmética determinista en tu dispositivo. No es un modelo de Meta AI y no genera texto con un LLM.",
+    prepAiNot: "AÚN NO conectada: la capa de generación con la API de Meta Model. No hay ninguna clave de API de Meta configurada, así que no hay generación de Meta AI en ninguna parte de esta app.",
+    prepSolo: "Participación: SOLO — un participante, sin compañeros de equipo (confirmado por el fundador, 26 de oct.).",
+    prepTrack: "Categoría (track): NO aparece en el correo de aceptación del 20 de oct. ni en el de créditos del 26 de oct. No la adivines — Josue la confirma desde su solicitud en Cerebral Valley antes de la entrega.",
+    prepCreditsTitle: "Créditos de $150 para la API de Meta Model — pasos del fundador (aquí no se agrega ninguna tarjeta)",
+    prepCredits1: "1. Envía el formulario de reclamo de créditos enlazado en el correo de Cerebral Valley del 26 de oct. (cada participante reclama el suyo). Fecha límite: 4 de nov., 9:00 PM ET. Los créditos llegan en lotes — revisa la página de facturación de Meta para confirmar que se aplicaron.",
+    prepCredits2: "2. Para usar los créditos, la cuenta de Meta debe tener una tarjeta — acción solo del fundador. Esta app no agrega tarjetas, no compra nada y no activa cargos adicionales.",
+    prepCredits3: "3. Activa la notificación de “Límite de gasto” en la página de facturación — entiéndelo con claridad: es una alerta, NO un tope de gasto.",
+    prepCredits4: "4. Cuando exista la clave de la API de Meta, el fundador la agrega solo mediante la configuración segura del servidor — nunca en esta página, nunca en el navegador, nunca por chat. Los planes se etiquetarán como generados por Meta solo en las partes que la API produzca realmente.",
+    prepDeadline: "Ventana de construcción: 26 de oct. – 4 de nov. de 2026 · Entrega: 4 de nov., 9:00 PM ET.",
+    factsNote: "Contexto de Plates for Hope: ~45 comidas servidas hasta ahora mediante esfuerzos directos de la comunidad — esas comidas no se coordinaron con esta app. El servicio regular de martes/jueves es una meta futura, no una operación actual; aún no hay alianzas con restaurantes. Esos datos son la historia del proyecto — nunca una cantidad de personas para el demo.",
+    copyHeader: "PLATES FOR HOPE — PLAN DE COMIDA",
+    copyMenu: "MENÚ",
+    copyHave: "COMPRAS — YA TIENES",
+    copyBuy: "COMPRAS — POR COMPRAR (estimados, no precios de tienda)",
+    copyAllergy: "MARCAS DE ALERGIA",
+    copyChecklist: "LISTA DE TAREAS PARA VOLUNTARIOS",
+    copyFooter: "Los costos son estimados de planificación, no precios de tienda."
+  }
+};
+
+var DEMOS = [
+  { key: "tight", labelEn: "Demo 1 — Tight budget", labelEs: "Demo 1 — Presupuesto ajustado",
+    onHand: [ { name: "Chicken thighs", qty: "8 lb" }, { name: "Rice", qty: "10 lb" } ],
+    budget: "60", currency: "USD", headcount: "40", restrictions: [], allergies: [], equipment: "full", accommodation: "" },
+  { key: "large", labelEn: "Demo 2 — Large headcount (100)", labelEs: "Demo 2 — Grupo grande (100)",
+    onHand: [ { name: "Rice", qty: "15 lb" }, { name: "Dry beans", qty: "6 lb" }, { name: "Potatoes", qty: "20 lb" }, { name: "Onions", qty: "5 lb" } ],
+    budget: "180", currency: "USD", headcount: "100", restrictions: [], allergies: [], equipment: "full", accommodation: "" },
+  { key: "restricted", labelEn: "Demo 3 — Vegetarian + gluten-free", labelEs: "Demo 3 — Vegetariano + sin gluten",
+    onHand: [ { name: "Lentils", qty: "5 lb" }, { name: "Carrots", qty: "4 lb" } ],
+    budget: "90", currency: "USD", headcount: "50", restrictions: ["vegetarian", "gluten-free"], allergies: [], equipment: "full", accommodation: "" }
+];
+
+// ---------------------------------------------------------------------------
+// App state + DOM wiring
+// ---------------------------------------------------------------------------
+var lang = "en";
+var onHandRows = [{ name: "", qty: "" }];
+var selRestrictions = [];
+var selAllergies = [];
+var selEquipment = "full";
+var plan = null;
+var failure = null;
+var checkedSteps = {};
+var copiedTimer = null;
+
+var STORAGE_KEY = "pfh-coordinator-saved-plans-v1";
+function loadSaved() {
+  try {
+    var raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    var arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) { return []; }
+}
+function persistSaved(list) {
+  try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) { /* storage unavailable */ }
+}
+function savePlanToDevice(p, inputsJson) {
+  var list = loadSaved();
+  var entry = {
+    id: Date.now(),
+    title: p.titleEn,
+    headcount: p.headcount,
+    budget_cents: p.budgetCents,
+    currency: p.currency,
+    total_cents: p.totalCents,
+    verdict: p.verdict,
+    created_at: new Date().toISOString(),
+    planJson: JSON.stringify(p),
+    inputsJson: inputsJson || ""
+  };
+  list.unshift(entry);
+  if (list.length > 20) list = list.slice(0, 20);
+  persistSaved(list);
+  return entry;
+}
+
+function $(id) { return document.getElementById(id); }
+function t() { return S[lang]; }
+function planMoney(cents) {
+  var sym = plan ? (plan.currencySymbol || symbolFor(plan.currency)) : "$";
+  return sym + (cents / 100).toFixed(2);
+}
+function dishKindLabel(kind) {
+  return kind === "main" ? t().mainDish : kind === "side" ? t().sideDish : t().accommodationDish;
+}
+
+function applyStaticStrings() {
+  document.documentElement.lang = lang;
+  var nodes = document.querySelectorAll("#pfh-coord [data-i18n]");
+  for (var i = 0; i < nodes.length; i++) {
+    var key = nodes[i].getAttribute("data-i18n");
+    if (S[lang][key]) nodes[i].textContent = S[lang][key];
+  }
+  $("lang-en").className = "langbtn" + (lang === "en" ? " active" : "");
+  $("lang-es").className = "langbtn" + (lang === "es" ? " active" : "");
+  $("oh-add").textContent = "+ " + t().addIngredient;
+  $("generate-btn").textContent = t().generate;
+  $("copy-btn").textContent = t().copyPlan;
+  $("other-needs").placeholder = t().otherNeedsPh;
+  $("other-allergies").placeholder = t().otherAllergiesPh;
+  var nameInputs = document.querySelectorAll("#pfh-coord .oh-name");
+  for (var n = 0; n < nameInputs.length; n++) nameInputs[n].placeholder = lang === "en" ? "e.g. Rice" : "p. ej. Arroz";
+}
+
+function renderDemos() {
+  var row = $("demo-row");
+  row.innerHTML = "";
+  DEMOS.forEach(function (demo) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "demo-btn";
+    b.textContent = (lang === "en" ? demo.labelEn : demo.labelEs) + " · DEMO";
+    b.addEventListener("click", function () { applyDemo(demo); });
+    row.appendChild(b);
+  });
+}
+function renderCurrency() {
+  var sel = $("currency");
+  var current = sel.value || "USD";
+  sel.innerHTML = "";
+  CURRENCIES.forEach(function (c) {
+    var o = document.createElement("option");
+    o.value = c.code;
+    o.textContent = lang === "en" ? c.en : c.es;
+    sel.appendChild(o);
+  });
+  sel.value = current;
+}
+function renderOnHand() {
+  var wrap = $("oh-rows");
+  wrap.innerHTML = "";
+  onHandRows.forEach(function (r, i) {
+    var div = document.createElement("div");
+    div.className = "oh-row";
+    var name = document.createElement("input");
+    name.className = "field oh-name";
+    name.value = r.name;
+    name.placeholder = lang === "en" ? "e.g. Rice" : "p. ej. Arroz";
+    name.setAttribute("aria-label", t().ingredientName + " " + (i + 1));
+    name.addEventListener("input", function () { onHandRows[i].name = name.value; });
+    var qty = document.createElement("input");
+    qty.className = "field oh-qty";
+    qty.value = r.qty;
+    qty.placeholder = "8 lb";
+    qty.setAttribute("aria-label", t().ingredientQty + " " + (i + 1));
+    qty.addEventListener("input", function () { onHandRows[i].qty = qty.value; });
+    var rm = document.createElement("button");
+    rm.type = "button";
+    rm.className = "oh-remove";
+    rm.textContent = "×";
+    rm.setAttribute("aria-label", t().removeIngredient + " " + (i + 1));
+    rm.addEventListener("click", function () {
+      onHandRows = onHandRows.filter(function (_, j) { return j !== i; });
+      renderOnHand();
+    });
+    div.appendChild(name); div.appendChild(qty); div.appendChild(rm);
+    wrap.appendChild(div);
+  });
+}
+function renderChips() {
+  var rc = $("restriction-chips");
+  rc.innerHTML = "";
+  RESTRICTIONS.forEach(function (r) {
+    var b = document.createElement("button");
+    b.type = "button";
+    var active = selRestrictions.indexOf(r.id) !== -1;
+    b.className = "chip" + (active ? " on-green" : "");
+    b.setAttribute("aria-pressed", active ? "true" : "false");
+    b.textContent = lang === "en" ? r.en : r.es;
+    b.addEventListener("click", function () {
+      var idx = selRestrictions.indexOf(r.id);
+      if (idx === -1) selRestrictions.push(r.id); else selRestrictions.splice(idx, 1);
+      renderChips();
+    });
+    rc.appendChild(b);
+  });
+  var ac = $("allergy-chips");
+  ac.innerHTML = "";
+  ALLERGENS.forEach(function (a) {
+    var b = document.createElement("button");
+    b.type = "button";
+    var active = selAllergies.indexOf(a.id) !== -1;
+    b.className = "chip chip-amber" + (active ? " on-amber" : "");
+    b.setAttribute("aria-pressed", active ? "true" : "false");
+    b.textContent = lang === "en" ? a.en : a.es;
+    b.addEventListener("click", function () {
+      var idx = selAllergies.indexOf(a.id);
+      if (idx === -1) selAllergies.push(a.id); else selAllergies.splice(idx, 1);
+      renderChips();
+    });
+    ac.appendChild(b);
+  });
+}
+function renderEquipment() {
+  var row = $("equip-row");
+  row.innerHTML = "";
+  EQUIPMENT.forEach(function (eq) {
+    var b = document.createElement("button");
+    b.type = "button";
+    var active = selEquipment === eq.id;
+    b.className = "equip-btn" + (active ? " active" : "");
+    b.setAttribute("aria-pressed", active ? "true" : "false");
+    b.textContent = lang === "en" ? eq.en : eq.es;
+    b.addEventListener("click", function () { selEquipment = eq.id; renderEquipment(); });
+    row.appendChild(b);
+  });
+}
+function applyDemo(demo) {
+  onHandRows = demo.onHand.map(function (r) { return { name: r.name, qty: r.qty }; });
+  $("budget").value = demo.budget;
+  $("currency").value = demo.currency;
+  $("headcount").value = demo.headcount;
+  selRestrictions = demo.restrictions.slice();
+  $("other-needs").value = "";
+  selAllergies = demo.allergies.slice();
+  $("other-allergies").value = "";
+  selEquipment = demo.equipment;
+  $("accommodation").value = demo.accommodation;
+  showErrors([]);
+  failure = null;
+  renderFailure();
+  renderOnHand(); renderChips(); renderEquipment();
+}
+
+function showErrors(errors) {
+  var box = $("form-errors");
+  box.innerHTML = "";
+  if (errors.length === 0) { box.hidden = true; return; }
+  errors.forEach(function (e) {
+    var p = document.createElement("p");
+    p.textContent = e;
+    box.appendChild(p);
+  });
+  box.hidden = false;
+}
+
+function submit() {
+  // Validation identical in substance to the live app: invalid inputs are
+  // rejected with an explanation and are never silently changed.
+  var errors = [];
+  var headTrim = $("headcount").value.trim();
+  var headNum = Number(headTrim);
+  if (headTrim === "" || !Number.isInteger(headNum) || headNum < 1) errors.push(t().errHeadcount);
+  var budgetTrim = $("budget").value.trim();
+  var budgetNum = Number(budgetTrim);
+  if (budgetTrim === "" || isNaN(budgetNum) || budgetNum < 0) errors.push(t().errBudget);
+  onHandRows.forEach(function (row) {
+    var q = row.qty.trim();
+    if (row.name.trim() !== "" && q !== "") {
+      var m = q.replace(",", ".").match(/(-?\d+(?:\.\d+)?)/);
+      if (!m || !m[1] || parseFloat(m[1]) <= 0) errors.push(t().errQty(row.name.trim()));
+    }
+  });
+  var accTrim = $("accommodation").value.trim();
+  var accNum = Number(accTrim);
+  if (accTrim !== "" && (!Number.isInteger(accNum) || accNum < 0)) errors.push(t().errAccommodation);
+  if (errors.length > 0) { showErrors(errors); return; }
+  showErrors([]);
+
+  var input = {
+    ingredientsOnHand: onHandRows.filter(function (r) { return r.name.trim() !== ""; })
+      .map(function (r) { return { name: r.name.trim(), qty: r.qty.trim() || undefined }; }),
+    budgetDollars: budgetNum,
+    currency: $("currency").value,
+    headcount: headNum,
+    restrictions: selRestrictions.slice(),
+    otherRestrictions: $("other-needs").value.trim() || undefined,
+    allergies: selAllergies.slice(),
+    otherAllergies: $("other-allergies").value.trim() || undefined,
+    equipment: selEquipment,
+    accommodationServings: accTrim === "" ? undefined : accNum
+  };
+  var result = buildPlan(input);
+  checkedSteps = {};
+  if (result.kind === "cannot") {
+    failure = result;
+    plan = null;
+  } else {
+    plan = result;
+    failure = null;
+    savePlanToDevice(result, JSON.stringify(input));
+    renderSaved();
+  }
+  renderFailure();
+  renderPlan(true);
+}
+
+function renderFailure() {
+  var sec = $("failure-section");
+  if (!failure) { sec.hidden = true; return; }
+  sec.hidden = false;
+  $("failure-title").textContent = lang === "en" ? failure.titleEn : failure.titleEs;
+  var reasons = $("failure-reasons");
+  reasons.innerHTML = "";
+  failure.reasons.forEach(function (r) {
+    var p = document.createElement("p");
+    p.style.margin = "0";
+    p.textContent = lang === "en" ? r.en : r.es;
+    reasons.appendChild(p);
+  });
+  $("failure-could-wrap").hidden = failure.couldDo.length === 0;
+  var could = $("failure-could");
+  could.innerHTML = "";
+  failure.couldDo.forEach(function (r) {
+    var li = document.createElement("li");
+    li.textContent = lang === "en" ? r.en : r.es;
+    could.appendChild(li);
+  });
+  var couldNot = $("failure-couldnot");
+  couldNot.innerHTML = "";
+  failure.couldNot.forEach(function (r) {
+    var li = document.createElement("li");
+    li.textContent = lang === "en" ? r.en : r.es;
+    couldNot.appendChild(li);
+  });
+}
+
+function renderPlan(scroll) {
+  var sec = $("plan-section");
+  if (!plan) { sec.hidden = true; return; }
+  sec.hidden = false;
+  var tt = t();
+  $("plan-title").textContent = lang === "en" ? plan.titleEn : plan.titleEs;
+  var eqLabel = "";
+  EQUIPMENT.forEach(function (e) { if (e.id === plan.equipment) eqLabel = lang === "en" ? e.en : e.es; });
+  $("plan-equip-line").textContent = tt.equipAssumed + ": " + (eqLabel || plan.equipment || "") + " · " + (plan.currency || "USD");
+  var note = $("plan-saved-note");
+  note.hidden = false;
+  note.textContent = "✓ " + tt.planSavedNote;
+
+  var vb = $("verdict-box");
+  vb.className = "verdict-box" + (plan.verdict === "over" ? " over" : "");
+  $("verdict-main").textContent = tt.estTotal + ": " + planMoney(plan.totalCents) + " · " + tt.budgetLine + ": " + planMoney(plan.budgetCents);
+  var sub = plan.verdict === "under" ? tt.underBy + " " + planMoney(plan.diffCents)
+    : plan.verdict === "over" ? tt.overBy + " " + planMoney(-plan.diffCents)
+    : tt.exactBudget;
+  $("verdict-sub").textContent = sub + " · " + planMoney(plan.perPersonCents) + " " + tt.perPerson;
+  var fix = $("verdict-fix");
+  if (plan.cheapestFix) {
+    fix.hidden = false;
+    fix.textContent = lang === "en" ? plan.cheapestFix.en : plan.cheapestFix.es;
+  } else { fix.hidden = true; fix.textContent = ""; }
+
+  var banner = $("allergy-banner");
+  if (plan.allergyNote) {
+    banner.hidden = false;
+    var flags = $("allergy-flags");
+    flags.innerHTML = "";
+    (plan.allergyFlags || []).forEach(function (f) {
+      var p = document.createElement("p");
+      p.style.margin = "0";
+      p.style.fontSize = "0.875rem";
+      p.style.fontWeight = "600";
+      p.textContent = lang === "en" ? f.en : f.es;
+      flags.appendChild(p);
+    });
+    $("allergy-note").textContent = lang === "en" ? plan.allergyNote.en : plan.allergyNote.es;
+  } else { banner.hidden = true; }
+
+  var warns = $("plan-warnings");
+  warns.innerHTML = "";
+  plan.warnings.forEach(function (w) {
+    var d = document.createElement("div");
+    d.className = "warn";
+    var p = document.createElement("p");
+    p.textContent = lang === "en" ? w.en : w.es;
+    d.appendChild(p);
+    warns.appendChild(d);
+  });
+
+  var dishes = $("plan-dishes");
+  dishes.innerHTML = "";
+  plan.dishes.forEach(function (dish) {
+    var art = document.createElement("article");
+    art.className = "dish-card";
+    var kind = document.createElement("p");
+    kind.className = "dish-kind";
+    kind.textContent = dishKindLabel(dish.kind);
+    var nm = document.createElement("h4");
+    nm.className = "dish-name";
+    nm.textContent = lang === "en" ? dish.nameEn : dish.nameEs;
+    var sv = document.createElement("p");
+    sv.className = "dish-serv";
+    sv.textContent = dish.servings + " " + tt.servings;
+    var cook = document.createElement("p");
+    cook.className = "dish-cook";
+    cook.textContent = lang === "en" ? dish.cookEn : dish.cookEs;
+    art.appendChild(kind); art.appendChild(nm); art.appendChild(sv); art.appendChild(cook);
+    var sat = lang === "en" ? dish.satisfiesEn : dish.satisfiesEs;
+    var con = lang === "en" ? dish.conflictsEn : dish.conflictsEs;
+    if (sat.length > 0 && con.length === 0) {
+      var ok = document.createElement("p");
+      ok.className = "dish-ok";
+      ok.textContent = "✓ " + tt.satisfies + ": " + sat.join(", ");
+      art.appendChild(ok);
+    }
+    if (con.length > 0) {
+      var bad = document.createElement("p");
+      bad.className = "dish-bad";
+      bad.textContent = "✗ " + tt.conflicts + ": " + con.join(", ");
+      art.appendChild(bad);
+    }
+    dishes.appendChild(art);
+  });
+
+  var used = $("plan-used");
+  if (plan.usedOnHand.length > 0) {
+    used.hidden = false;
+    used.innerHTML = "";
+    var strong = document.createElement("span");
+    strong.style.fontWeight = "600";
+    strong.textContent = tt.usedOnHand + ": ";
+    used.appendChild(strong);
+    used.appendChild(document.createTextNode(plan.usedOnHand.map(function (u) { return lang === "en" ? u.en : u.es; }).join(", ")));
+  } else { used.hidden = true; }
+  var unm = $("plan-unmatched");
+  if (plan.unmatchedOnHand.length > 0) {
+    unm.hidden = false;
+    unm.innerHTML = "";
+    var strong2 = document.createElement("span");
+    strong2.style.fontWeight = "600";
+    strong2.textContent = tt.unmatched + ": ";
+    unm.appendChild(strong2);
+    unm.appendChild(document.createTextNode(plan.unmatchedOnHand.join(", ")));
+  } else { unm.hidden = true; }
+
+  var haveLines = plan.grocery.filter(function (g) { return g.onHandApplied > 0; });
+  var buyLines = plan.grocery.filter(function (g) { return g.buyQty > 0; });
+  var haveWrap = $("have-wrap");
+  if (haveLines.length > 0) {
+    haveWrap.hidden = false;
+    var hl = $("have-list");
+    hl.innerHTML = "";
+    haveLines.forEach(function (line) {
+      var li = document.createElement("li");
+      var row = document.createElement("div");
+      row.className = "g-row";
+      var nm = document.createElement("span");
+      nm.className = "g-name";
+      nm.textContent = lang === "en" ? line.itemEn : line.itemEs;
+      var tot = document.createElement("span");
+      tot.className = "g-total";
+      tot.textContent = planMoney(0);
+      row.appendChild(nm); row.appendChild(tot);
+      var det = document.createElement("p");
+      det.className = "g-detail";
+      det.textContent = fmtQty(line.onHandApplied) + " " + (lang === "en" ? line.unitEn : line.unitEs) + " " + tt.onHandApplied + " · " + tt.needCol + ": " + fmtQty(line.needed) + " " + (lang === "en" ? line.unitEn : line.unitEs);
+      var cov = document.createElement("p");
+      cov.className = "g-covered";
+      cov.style.margin = "0";
+      cov.textContent = line.coveredByOnHand ? "✓ " + tt.covered : tt.coversPart;
+      li.appendChild(row); li.appendChild(det); li.appendChild(cov);
+      hl.appendChild(li);
+    });
+  } else { haveWrap.hidden = true; }
+
+  $("buy-empty").hidden = buyLines.length !== 0;
+  if (buyLines.length === 0) $("buy-empty").textContent = "✓ " + tt.covered;
+  var bl = $("buy-list");
+  bl.innerHTML = "";
+  buyLines.forEach(function (line) {
+    var li = document.createElement("li");
+    var row = document.createElement("div");
+    row.className = "g-row";
+    var nm = document.createElement("span");
+    nm.className = "g-name";
+    nm.textContent = lang === "en" ? line.itemEn : line.itemEs;
+    var tot = document.createElement("span");
+    tot.className = "g-total";
+    tot.textContent = planMoney(line.lineTotalCents);
+    row.appendChild(nm); row.appendChild(tot);
+    var det = document.createElement("p");
+    det.className = "g-detail";
+    var txt = tt.needCol + ": " + fmtQty(line.needed) + " " + (lang === "en" ? line.unitEn : line.unitEs);
+    if (line.onHandApplied > 0) txt += " · " + fmtQty(line.onHandApplied) + " " + (lang === "en" ? line.unitEn : line.unitEs) + " " + tt.onHandApplied;
+    txt += " · " + tt.buyCol + ": " + fmtQty(line.buyQty) + " " + (lang === "en" ? line.unitEn : line.unitEs) + " · " + tt.estCol + " " + planMoney(line.unitCostCents) + "/" + (lang === "en" ? line.unitEn : line.unitEs);
+    det.textContent = txt;
+    li.appendChild(row); li.appendChild(det);
+    bl.appendChild(li);
+  });
+
+  var cl = $("checklist");
+  cl.innerHTML = "";
+  plan.checklist.forEach(function (stepItem, i) {
+    var phase = lang === "en" ? stepItem.phaseEn : stepItem.phaseEs;
+    var prevPhase = i > 0 ? (lang === "en" ? plan.checklist[i - 1].phaseEn : plan.checklist[i - 1].phaseEs) : null;
+    var li = document.createElement("li");
+    if (phase !== prevPhase) {
+      var ph = document.createElement("p");
+      ph.className = "phase-head";
+      ph.textContent = phase;
+      li.appendChild(ph);
+    }
+    var label = document.createElement("label");
+    label.className = "check-item";
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = !!checkedSteps[i];
+    cb.setAttribute("aria-label", phase + " — " + (i + 1));
+    cb.addEventListener("change", function () { checkedSteps[i] = cb.checked; renderPlan(false); });
+    var span = document.createElement("span");
+    span.textContent = lang === "en" ? stepItem.en : stepItem.es;
+    if (checkedSteps[i]) span.className = "done";
+    label.appendChild(cb); label.appendChild(span);
+    li.appendChild(label);
+    cl.appendChild(li);
+  });
+
+  if (scroll) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function buildPlanText(p) {
+  var tt = t();
+  var m = function (cents) { return (p.currencySymbol || symbolFor(p.currency)) + (cents / 100).toFixed(2); };
+  var lines = [];
+  lines.push(tt.copyHeader);
+  lines.push(lang === "en" ? p.titleEn : p.titleEs);
+  lines.push(tt.headcount + ": " + p.headcount + " · " + tt.budgetLine + ": " + m(p.budgetCents) + " " + (p.currency || "") + " · " + tt.estTotal + ": " + m(p.totalCents));
+  lines.push(p.verdict === "under" ? tt.underBy + " " + m(p.diffCents) : p.verdict === "over" ? tt.overBy + " " + m(-p.diffCents) : tt.exactBudget);
+  lines.push("");
+  lines.push(tt.copyMenu);
+  p.dishes.forEach(function (d) {
+    lines.push("- " + dishKindLabel(d.kind) + ": " + (lang === "en" ? d.nameEn : d.nameEs) + " (" + d.servings + " " + tt.servings + ") — " + (lang === "en" ? d.cookEn : d.cookEs));
+  });
+  var have = p.grocery.filter(function (g) { return g.onHandApplied > 0; });
+  var buy = p.grocery.filter(function (g) { return g.buyQty > 0; });
+  if (have.length > 0) {
+    lines.push("");
+    lines.push(tt.copyHave);
+    have.forEach(function (g) {
+      lines.push("- " + (lang === "en" ? g.itemEn : g.itemEs) + ": " + fmtQty(g.onHandApplied) + " " + (lang === "en" ? g.unitEn : g.unitEs));
+    });
+  }
+  lines.push("");
+  lines.push(tt.copyBuy);
+  if (buy.length === 0) lines.push("- —");
+  buy.forEach(function (g) {
+    lines.push("- " + (lang === "en" ? g.itemEn : g.itemEs) + ": " + fmtQty(g.buyQty) + " " + (lang === "en" ? g.unitEn : g.unitEs) + " — " + m(g.lineTotalCents));
+  });
+  if (p.allergyNote) {
+    lines.push("");
+    lines.push(tt.copyAllergy);
+    (p.allergyFlags || []).forEach(function (f) { lines.push("- " + (lang === "en" ? f.en : f.es)); });
+    lines.push(lang === "en" ? p.allergyNote.en : p.allergyNote.es);
+  }
+  if (p.warnings.length > 0) {
+    lines.push("");
+    p.warnings.forEach(function (w) { lines.push("! " + (lang === "en" ? w.en : w.es)); });
+  }
+  lines.push("");
+  lines.push(tt.copyChecklist);
+  p.checklist.forEach(function (s, i) {
+    lines.push((i + 1) + ". [" + (lang === "en" ? s.phaseEn : s.phaseEs) + "] " + (lang === "en" ? s.en : s.es));
+  });
+  lines.push("");
+  lines.push(tt.copyFooter);
+  return lines.join("\n");
+}
+
+function copyPlan() {
+  if (!plan) return;
+  var text = buildPlanText(plan);
+  function done() {
+    var btn = $("copy-btn");
+    btn.textContent = t().copied;
+    if (copiedTimer) window.clearTimeout(copiedTimer);
+    copiedTimer = window.setTimeout(function () { btn.textContent = t().copyPlan; }, 2500);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+  } else { fallbackCopy(text); done(); }
+}
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) { /* clipboard unavailable */ }
+  ta.remove();
+}
+
+function renderSaved() {
+  var list = loadSaved();
+  var wrap = $("saved-list");
+  wrap.innerHTML = "";
+  $("no-saved").hidden = list.length !== 0;
+  list.forEach(function (p) {
+    var pm = function (cents) { return symbolFor(p.currency) + (cents / 100).toFixed(2); };
+    var div = document.createElement("div");
+    div.className = "saved-item";
+    var meta = document.createElement("div");
+    meta.className = "meta";
+    var title = document.createElement("p");
+    title.className = "saved-title";
+    title.textContent = p.title;
+    var sub = document.createElement("p");
+    sub.className = "saved-sub";
+    sub.textContent = new Date(p.created_at).toLocaleString(lang === "en" ? "en-US" : "es-US") + " · " + pm(p.total_cents) + " / " + pm(p.budget_cents) + " · " + p.headcount + " " + t().servings;
+    meta.appendChild(title); meta.appendChild(sub);
+    var open = document.createElement("button");
+    open.type = "button";
+    open.className = "small-btn";
+    open.textContent = t().load;
+    open.addEventListener("click", function () {
+      try {
+        plan = JSON.parse(p.planJson);
+        failure = null;
+        checkedSteps = {};
+        renderFailure();
+        renderPlan(true);
+      } catch (e) { /* saved entry unreadable */ }
+    });
+    var del = document.createElement("button");
+    del.type = "button";
+    del.className = "small-btn danger";
+    del.textContent = t().deletePlan;
+    del.setAttribute("aria-label", t().deletePlan + ": " + p.title);
+    del.addEventListener("click", function () {
+      persistSaved(loadSaved().filter(function (x) { return x.id !== p.id; }));
+      renderSaved();
+    });
+    div.appendChild(meta); div.appendChild(open); div.appendChild(del);
+    wrap.appendChild(div);
+  });
+}
+
+function setLang(l) {
+  lang = l;
+  applyStaticStrings();
+  renderDemos();
+  renderCurrency();
+  renderOnHand();
+  renderChips();
+  renderEquipment();
+  renderFailure();
+  renderPlan(false);
+  renderSaved();
+}
+
+// Init
+$("lang-en").addEventListener("click", function () { setLang("en"); });
+$("lang-es").addEventListener("click", function () { setLang("es"); });
+$("oh-add").addEventListener("click", function () {
+  onHandRows.push({ name: "", qty: "" });
+  renderOnHand();
+});
+$("coord-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  submit();
+});
+$("copy-btn").addEventListener("click", copyPlan);
+$("prep-toggle").addEventListener("click", function () {
+  var body = $("prep-body");
+  var open = body.hidden;
+  body.hidden = !open;
+  $("prep-toggle").setAttribute("aria-expanded", open ? "true" : "false");
+  $("prep-sign").textContent = open ? "−" : "+";
+});
+setLang("en");
+
+})();
+</script>
+<section id="volunteer" class="alt">
       <div class="wrap">
         <span class="eyebrow">Volunteer</span>
         <h2>Many hands set the table<span class="state-chip chip-test" data-i18n="chipTest"></span></h2>
@@ -2869,7 +4712,7 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   function setText(sel, key) { var el = document.querySelector(sel); if (el) el.textContent = T(key); }
   function setFirstText(sel, key) { var el = document.querySelector(sel); if (el && el.firstChild) el.firstChild.nodeValue = T(key); }
   function applyI18n() {
-    document.querySelectorAll("[data-i18n]").forEach(function (el) { el.innerHTML = T(el.getAttribute("data-i18n")); });
+    document.querySelectorAll("[data-i18n]").forEach(function (el) { if (el.closest("#pfh-coord")) return; el.innerHTML = T(el.getAttribute("data-i18n")); });
     $("app-lang-en").classList.toggle("active", lang === "en");
     $("app-lang-es").classList.toggle("active", lang === "es");
     /* Pre-existing sections extended by this app */
